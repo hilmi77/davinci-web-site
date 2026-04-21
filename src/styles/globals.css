@@ -1,0 +1,185 @@
+/* ─── Design Tokens ─────────────────────────────────────────── */
+:root {
+  /* Temel renkler */
+  --black: #1F2937;
+  --black-deep: #111827;
+  --red: #A80000;
+  --red-light: #C94040;
+  --red-dark: #540000;
+  --red-muted: rgba(168, 0, 0, 0.08);
+  --yellow: #FFD166;
+  --yellow-dark: #F59E0B;
+
+  /* Gri skalası */
+  --gray-50:  #FAFBFC;
+  --gray-100: #F4F6F8;
+  --gray-200: #EDF0F4;
+  --gray-300: #DDE3EB;
+  --gray-400: #C4CDD8;
+  --gray-500: #9AA5B4;
+  --gray-600: #6B7A8D;
+  --gray-700: #4A5568;
+
+  /* Section arka planları — belirgin geçiş için farklı başlangıç noktaları */
+  --section-1: #FFFFFF;
+  --section-2: linear-gradient(180deg, #F4F6F8 0%, #EDF0F4 100%);
+  --section-3: linear-gradient(180deg, #EDF0F4 0%, #DDE3EB 100%);
+  --section-4: linear-gradient(180deg, #DDE3EB 0%, #C4CDD8 100%);
+
+  /* Gradient alanlar */
+  --bg-gradient-1: linear-gradient(135deg, #FFFFFF 0%, #F4F6F8 100%);
+  --bg-gradient-2: linear-gradient(135deg, #F4F6F8 0%, #EDF0F4 45%, #DDE3EB 100%);
+  --bg-gradient-3: linear-gradient(135deg, #EDF0F4 0%, #C4CDD8 60%, #9AA5B4 100%);
+
+  /* Tipografi */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  /* Gölge — açık temada daha hafif */
+  --shadow-sm: 0 1px 4px rgba(31, 41, 55, 0.06), 0 2px 8px rgba(31, 41, 55, 0.04);
+  --shadow-md: 0 4px 16px rgba(31, 41, 55, 0.09), 0 2px 6px rgba(31, 41, 55, 0.05);
+  --shadow-lg: 0 12px 40px rgba(31, 41, 55, 0.13), 0 4px 12px rgba(31, 41, 55, 0.07);
+  --shadow-red: 0 6px 24px rgba(168, 0, 0, 0.22);
+}
+
+/* ─── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--section-1);
+  color: var(--black);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--gray-100); }
+::-webkit-scrollbar-thumb { background: var(--red-light); border-radius: 3px; }
+
+/* ─── Section Ayırıcı ────────────────────────────────────────── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--gray-300) 30%, var(--gray-300) 70%, transparent 100%);
+}
+
+/* ─── Swiper Overrides ───────────────────────────────────────── */
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.55) !important;
+  width: 10px !important;
+  height: 10px !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #fff !important;
+  width: 28px !important;
+  border-radius: 5px !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff !important;
+  background: rgba(168, 0, 0, 0.85) !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  backdrop-filter: blur(8px) !important;
+  z-index: 20 !important;
+  top: 50% !important;
+  transition: background 0.2s ease !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3) !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(84, 0, 0, 0.95) !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 14px !important;
+  font-weight: 900 !important;
+}
+
+/* ─── Utility ────────────────────────────────────────────────── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+}
+
+/* Section Badge */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-bottom: 18px;
+}
+
+.section-badge--red {
+  background: rgba(168, 0, 0, 0.08);
+  color: var(--red-light);
+  border: 1px solid rgba(168, 0, 0, 0.18);
+}
+
+.section-badge--soft {
+  background: rgba(31, 41, 55, 0.06);
+  color: var(--gray-600);
+  border: 1px solid rgba(31, 41, 55, 0.12);
+}
+
+.section-badge--dark {
+  background: rgba(31, 41, 55, 0.07);
+  color: var(--gray-700);
+  border: 1px solid rgba(31, 41, 55, 0.13);
+}
+
+.section-badge--yellow {
+  background: rgba(255, 209, 102, 0.15);
+  color: var(--yellow-dark);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}

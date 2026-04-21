@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "home": "Home",
+    "gameCheck": "Is This Game at the Cafe?",
+    "tableCheck": "Is There Space at the Cafe?",
+    "buyGames": "Buy Games",
+    "menu": "Menu",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Ankara's Largest",
+    "title": "Board Game",
+    "titleAccent": "Cafe",
+    "subtitle": "Hundreds of games, experienced staff, and a fun atmosphere await you.",
+    "cta": "Make a Reservation",
+    "ctaSecondary": "Explore Games"
+  },
+  "about": {
+    "badge": "About Us",
+    "title": "Welcome to",
+    "titleAccent": "Da Vinci's World",
+    "description": "Since 2017, we have been keeping board game culture alive in Ankara, presenting hundreds of games with our experienced team. We have become a home for game lovers of all ages and experience levels.",
+    "stat1Value": "500+",
+    "stat1Label": "Different Games",
+    "stat2Value": "7",
+    "stat2Label": "Years of Experience",
+    "stat3Value": "1000+",
+    "stat3Label": "Happy Players"
+  },
+  "features": {
+    "badge": "Why Da Vinci?",
+    "title": "Experience",
+    "titleAccent": "The Difference",
+    "items": [
+      {
+        "title": "Extensive Game Library",
+        "desc": "With over 500 board games, we offer options for every taste — from strategy to cooperative, family games to party games."
+      },
+      {
+        "title": "Experienced Game Guides",
+        "desc": "Our expert team is ready to teach you any game and make your gaming experience as enjoyable as possible."
+      },
+      {
+        "title": "Comfortable Environment",
+        "desc": "With wide tables, comfortable chairs and special lighting, you will feel at home in our venue designed for hours of play."
+      },
+      {
+        "title": "Delicious Menu",
+        "desc": "From coffee to snacks, our rich menu completes your gaming table experience."
+      },
+      {
+        "title": "Events and Tournaments",
+        "desc": "Become part of our gaming community with regularly organized tournaments and special events."
+      },
+      {
+        "title": "Group Reservations",
+        "desc": "Birthday, bachelor party, corporate event — you can make special table reservations for all your special days."
+      }
+    ]
+  },
+  "location": {
+    "badge": "Find Us",
+    "title": "We Know",
+    "titleAccent": "Where",
+    "title2": "We Are",
+    "address": "Neorama Business Center, Beştepe Mah. Yaşam Cd, Adalet Street No:4/B, 06510 Çankaya/Ankara",
+    "hours": "Working Hours",
+    "weekdays": "Weekdays",
+    "weekdaysHours": "12:00 – 00:00",
+    "weekends": "Weekends",
+    "weekendsHours": "10:00 – 00:00",
+    "getDirections": "Get Directions"
+  },
+  "contact": {
+    "badge": "Contact",
+    "title": "Get",
+    "titleAccent": "In Touch",
+    "phone": "Phone",
+    "email": "Email",
+    "social": "Social Media",
+    "followUs": "Follow us",
+    "instagram": "Instagram",
+    "telegram": "Telegram Group",
+    "whatsapp": "WhatsApp Group"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "madeWith": "Da Vinci Board Game Cafe"
+  }
+}
