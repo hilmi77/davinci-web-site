@@ -1,52 +1,123 @@
 import { useTranslation } from 'react-i18next'
-import AnimatedSection from '../ui/AnimatedSection'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
+import { useIsMobile } from '../../hooks/useIsMobile'
 
-const ICONS = [
-  <svg key={0} width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>,
-  <svg key={1} width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>,
-  <svg key={2} width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>,
-  <svg key={3} width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-1"/><path d="M15 3H5a2 2 0 00-2 2v8a2 2 0 002 2h2l4 4V5a2 2 0 00-2-2z"/></svg>,
-  <svg key={4} width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
-  <svg key={5} width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>,
+const PHOTOS = [
+  { src: '/features/Screenshot%202026-04-22%20at%2010.45.33.png', featureIdx: 0, rotate: -2.5, area: 'lib' },
+  { src: '/features/Screenshot%202026-04-22%20at%2010.41.31.png', featureIdx: 1, rotate: -2.2, area: 'game' },
+  { src: '/features/Screenshot%202026-04-22%20at%2010.38.42.png', featureIdx: 2, rotate: 3.2,  area: 'salon' },
+  { src: '/features/Screenshot%202026-04-22%20at%2010.40.07.png', featureIdx: 3, rotate: -1.9, area: 'menu' },
+  { src: '/features/Screenshot%202026-04-22%20at%2010.42.09.png', featureIdx: 4, rotate: -2.8, area: 'event' },
 ]
+
+const IMG_HEIGHTS_DESKTOP: Record<string, number> = {
+  lib: 440, game: 200, salon: 200, menu: 185, event: 200,
+}
+
+function Polaroid({
+  src, title, desc, rotate, delay, imgHeight,
+}: {
+  src: string; title: string; desc: string; rotate: number; delay: number; imgHeight: number
+}) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-60px' })
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 48, rotate: rotate * 2 }}
+      animate={inView ? { opacity: 1, y: 0, rotate } : { opacity: 0, y: 48, rotate: rotate * 2 }}
+      whileHover={{ rotate: 0, scale: 1.04, zIndex: 20 }}
+      transition={{ duration: 0.85, delay, ease: [0.23, 1, 0.32, 1] }}
+      style={{ position: 'relative', transformOrigin: 'center 90%', cursor: 'default' }}
+    >
+      {/* Pin */}
+      <div style={{
+        position: 'absolute',
+        top: '-9px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '13px',
+        height: '13px',
+        borderRadius: '50%',
+        background: 'var(--red)',
+        boxShadow: '0 2px 6px rgba(168,0,0,0.45)',
+        zIndex: 2,
+      }} />
+
+      {/* Polaroid frame */}
+      <div style={{
+        background: '#FFFEFB',
+        padding: '10px 10px 8px',
+        boxShadow: '0 8px 32px rgba(31,41,55,0.16), 0 2px 6px rgba(31,41,55,0.08)',
+        position: 'relative',
+      }}>
+        <img
+          src={src}
+          alt={title}
+          style={{ width: '100%', height: imgHeight, objectFit: 'cover', display: 'block' }}
+        />
+      </div>
+
+      {/* Caption */}
+      <div style={{ marginTop: '14px', padding: '0 4px' }}>
+        <h3 style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: '1.05rem',
+          fontWeight: 700,
+          color: 'var(--black)',
+          marginBottom: '5px',
+          lineHeight: 1.3,
+        }}>
+          {title}
+        </h3>
+        <p style={{
+          fontSize: '0.81rem',
+          color: 'var(--gray-600)',
+          lineHeight: 1.68,
+        }}>
+          {desc}
+        </p>
+      </div>
+    </motion.div>
+  )
+}
 
 export default function FeaturesSection() {
   const { t } = useTranslation()
+  const isMobile = useIsMobile()
+  const isTablet = useIsMobile(1024)
   const items = t('features.items', { returnObjects: true }) as { title: string; desc: string }[]
 
   return (
     <section
       style={{
-        background: 'var(--section-2)',
-        padding: 'clamp(80px, 10vw, 130px) 24px',
+        background: '#EDE8DF',
+        padding: 'clamp(64px, 10vw, 130px) 24px',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
-      {/* Subtle top/bottom divider */}
-      <div style={{
-        position: 'absolute',
-        top: 0, left: 0, right: 0,
-        height: '1px',
-        background: 'linear-gradient(90deg, transparent, var(--gray-300), transparent)',
-        pointerEvents: 'none',
-      }} />
-      <div style={{
-        position: 'absolute',
-        bottom: 0, left: 0, right: 0,
-        height: '1px',
-        background: 'linear-gradient(90deg, transparent, var(--gray-300), transparent)',
-        pointerEvents: 'none',
-      }} />
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(31,41,55,0.18), transparent)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(31,41,55,0.18), transparent)', pointerEvents: 'none' }} />
 
-      <div style={{ maxWidth: '1280px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
-        <AnimatedSection style={{ textAlign: 'center', marginBottom: 'clamp(48px, 6vw, 80px)' }}>
-          <span className="section-badge section-badge--dark" style={{ margin: '0 auto 20px', display: 'inline-flex' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+
+        {/* Header */}
+        <motion.div
+          style={{ textAlign: 'center', marginBottom: 'clamp(36px, 6vw, 72px)' }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <span className="section-badge section-badge--dark" style={{ display: 'inline-flex', margin: '0 auto 20px' }}>
             {t('features.badge')}
           </span>
           <h2 style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(2rem, 4vw, 3.2rem)',
+            fontSize: 'clamp(1.8rem, 4vw, 3.2rem)',
             fontWeight: 700,
             color: 'var(--black)',
             lineHeight: 1.15,
@@ -56,96 +127,139 @@ export default function FeaturesSection() {
               {t('features.titleAccent')}
             </span>
           </h2>
-        </AnimatedSection>
+        </motion.div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-          gap: '20px',
-          alignItems: 'stretch',
-        }}>
-          {items.map((item, idx) => (
-            <AnimatedSection key={idx} delay={idx * 0.07} style={{ height: '100%' }}>
-              <FeatureCard icon={ICONS[idx]} title={item.title} desc={item.desc} idx={idx} />
-            </AnimatedSection>
-          ))}
-        </div>
+        {/* Mobile: single column stack */}
+        {isMobile && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+            {PHOTOS.map((photo, i) => (
+              <Polaroid
+                key={photo.area}
+                src={photo.src}
+                title={items[photo.featureIdx]?.title ?? ''}
+                desc={items[photo.featureIdx]?.desc ?? ''}
+                rotate={photo.rotate * 0.5}
+                delay={i * 0.07}
+                imgHeight={200}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Tablet: 2-column grid */}
+        {!isMobile && isTablet && (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '36px 28px',
+            alignItems: 'start',
+          }}>
+            {PHOTOS.map((photo, i) => (
+              <Polaroid
+                key={photo.area}
+                src={photo.src}
+                title={items[photo.featureIdx]?.title ?? ''}
+                desc={items[photo.featureIdx]?.desc ?? ''}
+                rotate={photo.rotate}
+                delay={i * 0.08}
+                imgHeight={220}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Desktop: 3-column asymmetric grid with areas */}
+        {!isTablet && (
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr 1fr',
+              gridTemplateAreas: `
+                "lib game  salon"
+                "lib menu  event"
+              `,
+              gap: '40px 36px',
+              alignItems: 'start',
+            }}
+          >
+            {PHOTOS.map((photo, i) => (
+              <div
+                key={photo.area}
+                style={{
+                  gridArea: photo.area,
+                  paddingTop: photo.area === 'lib' ? '10px' : undefined,
+                }}
+              >
+                <Polaroid
+                  src={photo.src}
+                  title={items[photo.featureIdx]?.title ?? ''}
+                  desc={items[photo.featureIdx]?.desc ?? ''}
+                  rotate={photo.rotate}
+                  delay={i * 0.09}
+                  imgHeight={IMG_HEIGHTS_DESKTOP[photo.area]}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Feature 6 — full-width red callout */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          style={{
+            marginTop: 'clamp(32px, 5vw, 48px)',
+            background: 'var(--red)',
+            borderRadius: 'var(--radius-md)',
+            padding: 'clamp(20px, 4vw, 36px) clamp(20px, 4vw, 40px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '20px',
+            color: '#fff',
+            boxShadow: '0 8px 32px rgba(168,0,0,0.22)',
+          }}
+        >
+          <div>
+            <h3 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(1.1rem, 2.5vw, 1.55rem)',
+              fontWeight: 700,
+              marginBottom: '8px',
+              lineHeight: 1.25,
+            }}>
+              {items[5]?.title}
+            </h3>
+            <p style={{
+              fontSize: 'clamp(0.8rem, 1.5vw, 0.88rem)',
+              lineHeight: 1.68,
+              opacity: 0.9,
+              maxWidth: '600px',
+            }}>
+              {items[5]?.desc}
+            </p>
+          </div>
+          {!isMobile && (
+            <div style={{
+              width: '56px',
+              height: '56px',
+              borderRadius: '50%',
+              border: '2px solid rgba(255,255,255,0.28)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0,
+            }}>
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+              </svg>
+            </div>
+          )}
+        </motion.div>
+
       </div>
     </section>
-  )
-}
-
-function FeatureCard({ icon, title, desc, idx }: {
-  icon: React.ReactNode
-  title: string
-  desc: string
-  idx: number
-}) {
-  const isHighlighted = idx === 0 || idx === 4
-
-  return (
-    <div
-      style={{
-        background: isHighlighted
-          ? 'linear-gradient(160deg, rgba(168,0,0,0.05) 0%, rgba(168,0,0,0.01) 100%)'
-          : '#fff',
-        border: `1px solid ${isHighlighted ? 'rgba(168,0,0,0.15)' : 'rgba(31,41,55,0.07)'}`,
-        borderRadius: 'var(--radius-md)',
-        padding: '28px 24px',
-        transition: 'all 0.28s ease',
-        cursor: 'default',
-        boxShadow: 'var(--shadow-sm)',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-      onMouseEnter={e => {
-        const el = e.currentTarget
-        el.style.background = 'linear-gradient(135deg, rgba(168,0,0,0.07) 0%, rgba(168,0,0,0.02) 100%)'
-        el.style.borderColor = 'rgba(168,0,0,0.22)'
-        el.style.transform = 'translateY(-5px)'
-        el.style.boxShadow = '0 16px 48px rgba(168,0,0,0.10)'
-      }}
-      onMouseLeave={e => {
-        const el = e.currentTarget
-        el.style.background = isHighlighted
-          ? 'linear-gradient(160deg, rgba(168,0,0,0.05) 0%, rgba(168,0,0,0.01) 100%)'
-          : '#fff'
-        el.style.borderColor = isHighlighted ? 'rgba(168,0,0,0.15)' : 'rgba(31,41,55,0.07)'
-        el.style.transform = 'translateY(0)'
-        el.style.boxShadow = 'var(--shadow-sm)'
-      }}
-    >
-      <div style={{
-        width: '52px',
-        height: '52px',
-        borderRadius: 'var(--radius-sm)',
-        background: 'rgba(168,0,0,0.10)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'var(--red)',
-        marginBottom: '20px',
-      }}>
-        {icon}
-      </div>
-      <h3 style={{
-        fontFamily: 'var(--font-display)',
-        fontSize: '1.15rem',
-        fontWeight: 700,
-        color: 'var(--black)',
-        marginBottom: '12px',
-      }}>
-        {title}
-      </h3>
-      <p style={{
-        fontSize: '0.87rem',
-        color: 'var(--gray-600)',
-        lineHeight: 1.75,
-        marginTop: 'auto',
-      }}>
-        {desc}
-      </p>
-    </div>
   )
 }

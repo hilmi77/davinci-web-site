@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import HeroSlider from "../components/sections/HeroSlider";
 import AboutSection from "../components/sections/AboutSection";
 import FeaturesSection from "../components/sections/FeaturesSection";
-import LocationSection from "../components/sections/LocationSection";
 import ContactSection from "../components/sections/ContactSection";
 
 export default function HomePage() {
@@ -72,7 +71,6 @@ export default function HomePage() {
       <HeroSlider />
       <AboutSection />
       <FeaturesSection />
-      <LocationSection />
       <ContactSection />
     </>
   );
