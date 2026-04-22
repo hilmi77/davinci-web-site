@@ -1,20 +1,5 @@
 import { useTranslation } from "react-i18next";
 
-const SOCIAL_LINKS = [
-  {
-    href: "https://www.instagram.com/davinciboardgamecafe",
-    label: "Instagram",
-  },
-  { href: "https://t.me/davinciboardgame", label: "Telegram" },
-  { href: "https://wa.me/903122867860", label: "WhatsApp" },
-];
-
-const NAV_LINKS = [
-  { href: "https://davinciboardgame.com/hakkimizda/", label: "Hakkımızda" },
-  { href: "https://davinciboardgame.com/iletisim/", label: "İletişim" },
-  { href: "#about", label: "Galeri" },
-];
-
 export default function Footer() {
   const { t } = useTranslation();
 
@@ -77,35 +62,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
-}
-
-function FooterLink({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <a
-      href={href}
-      target={href.startsWith("http") ? "_blank" : undefined}
-      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      style={{
-        fontSize: "0.85rem",
-        color: "rgba(255,255,255,0.45)",
-        transition: "color 0.2s ease",
-        fontFamily: "var(--font-body)",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.color = "rgba(255,255,255,0.85)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.color = "rgba(255,255,255,0.45)";
-      }}
-    >
-      {children}
-    </a>
   );
 }
