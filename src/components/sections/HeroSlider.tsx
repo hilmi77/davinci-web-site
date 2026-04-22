@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination, Navigation, EffectFade } from 'swiper/modules'
 import { motion } from 'framer-motion'
@@ -6,6 +7,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
+import { fetchLatestMonthlyActivity } from '../../services/menuService'
 
 const SLIDES = [
   {
@@ -24,6 +26,12 @@ const SLIDES = [
 
 export default function HeroSlider() {
   const { t } = useTranslation()
+  const [monthlyImageUrl, setMonthlyImageUrl] = useState<string | null>(null)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+
+  useEffect(() => {
+    fetchLatestMonthlyActivity().then(setMonthlyImageUrl)
+  }, [])
 
   return (
     <section id="home" className="section-base" style={{ height: '100vh', minHeight: '600px' }}>
@@ -81,129 +89,255 @@ export default function HeroSlider() {
         paddingTop: '80px',
         pointerEvents: 'none',
       }}>
-        <div className="container-xl" style={{ width: '100%', pointerEvents: 'auto' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <span style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              fontSize: '0.72rem',
-              fontWeight: 700,
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              padding: '6px 16px',
-              borderRadius: '100px',
-              marginBottom: '18px',
-              background: 'rgba(255,255,255,0.14)',
-              color: 'rgba(255,255,255,0.92)',
-              border: '1px solid rgba(255,255,255,0.25)',
-              backdropFilter: 'blur(10px)',
-              fontFamily: 'var(--font-body)',
-            }}>
-              <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#fff', display: 'inline-block', opacity: 0.9 }} />
-              {t('hero.badge')}
-            </span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(3rem, 8vw, 7rem)',
-              fontWeight: 900,
-              lineHeight: 1.0,
-              color: '#fff',
-              marginBottom: '8px',
-              letterSpacing: '-0.02em',
-            }}
-          >
-            {t('hero.title')}
-            <br />
-            <span className="text-accent" style={{ WebkitTextStroke: 'none' }}>
-              {t('hero.titleAccent')}
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.7 }}
-            style={{
-              fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-              color: 'rgba(255,255,255,0.75)',
-              maxWidth: '500px',
-              marginTop: '20px',
-              marginBottom: '40px',
-              lineHeight: 1.7,
-            }}
-          >
-            {t('hero.subtitle')}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}
-          >
-            <motion.a
-              href="https://yervarmi.davinciboardgame.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.04, boxShadow: '0 12px 40px rgba(230,57,70,0.45)' }}
-              whileTap={{ scale: 0.97 }}
-              style={{
+        <div className="container-xl" style={{ width: '100%', pointerEvents: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '40px' }}>
+          {/* Left: text content */}
+          <div style={{ flex: '1 1 0', minWidth: 0 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <span style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                background: 'var(--red)',
-                color: '#fff',
-                padding: '16px 32px',
-                borderRadius: '100px',
+                fontSize: '0.72rem',
                 fontWeight: 700,
-                fontSize: '0.95rem',
-                letterSpacing: '0.02em',
-                fontFamily: 'var(--font-body)',
-              }}
-            >
-              {t('hero.cta')}
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </motion.a>
-
-            <motion.a
-              href="https://buoyunvarmi.davinciboardgame.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.04, background: 'rgba(255,255,255,0.15)' }}
-              whileTap={{ scale: 0.97 }}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                background: 'rgba(255,255,255,0.08)',
-                color: '#fff',
-                padding: '16px 32px',
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                padding: '6px 16px',
                 borderRadius: '100px',
-                fontWeight: 600,
-                fontSize: '0.95rem',
-                border: '1px solid rgba(255,255,255,0.2)',
-                backdropFilter: 'blur(8px)',
+                marginBottom: '18px',
+                background: 'rgba(255,255,255,0.14)',
+                color: 'rgba(255,255,255,0.92)',
+                border: '1px solid rgba(255,255,255,0.25)',
+                backdropFilter: 'blur(10px)',
                 fontFamily: 'var(--font-body)',
+              }}>
+                <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#fff', display: 'inline-block', opacity: 0.9 }} />
+                {t('hero.badge')}
+              </span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(3rem, 8vw, 7rem)',
+                fontWeight: 900,
+                lineHeight: 1.0,
+                color: '#fff',
+                marginBottom: '8px',
+                letterSpacing: '-0.02em',
               }}
             >
-              {t('hero.ctaSecondary')}
-            </motion.a>
-          </motion.div>
+              {t('hero.title')}
+              <br />
+              <span className="text-accent" style={{ WebkitTextStroke: 'none' }}>
+                {t('hero.titleAccent')}
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.7 }}
+              style={{
+                fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+                color: 'rgba(255,255,255,0.75)',
+                maxWidth: '500px',
+                marginTop: '20px',
+                marginBottom: '40px',
+                lineHeight: 1.7,
+              }}
+            >
+              {t('hero.subtitle')}
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.9 }}
+              style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}
+            >
+              <motion.a
+                href="https://yervarmi.davinciboardgame.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.04, boxShadow: '0 12px 40px rgba(230,57,70,0.45)' }}
+                whileTap={{ scale: 0.97 }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: 'var(--red)',
+                  color: '#fff',
+                  padding: '16px 32px',
+                  borderRadius: '100px',
+                  fontWeight: 700,
+                  fontSize: '0.95rem',
+                  letterSpacing: '0.02em',
+                  fontFamily: 'var(--font-body)',
+                }}
+              >
+                {t('hero.cta')}
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </motion.a>
+
+              <motion.a
+                href="https://buoyunvarmi.davinciboardgame.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.04, background: 'rgba(255,255,255,0.15)' }}
+                whileTap={{ scale: 0.97 }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: 'rgba(255,255,255,0.08)',
+                  color: '#fff',
+                  padding: '16px 32px',
+                  borderRadius: '100px',
+                  fontWeight: 600,
+                  fontSize: '0.95rem',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  backdropFilter: 'blur(8px)',
+                  fontFamily: 'var(--font-body)',
+                }}
+              >
+                {t('hero.ctaSecondary')}
+              </motion.a>
+            </motion.div>
+          </div>
+
+          {/* Right: monthly activity image */}
+          {monthlyImageUrl && (
+            <motion.div
+              initial={{ opacity: 0, x: 40, rotate: 3 }}
+              animate={{ opacity: 1, x: 0, rotate: 3 }}
+              transition={{ duration: 0.7, delay: 0.6 }}
+              className="hero-monthly-frame"
+              style={{
+                flexShrink: 0,
+                position: 'relative',
+                padding: '8px',
+                borderRadius: '24px',
+                background: 'linear-gradient(145deg, #A80000, #540000, rgba(168,0,0,0.4))',
+                boxShadow: '0 0 0 1px rgba(168,0,0,0.5), 0 32px 80px rgba(0,0,0,0.6), 0 0 40px rgba(168,0,0,0.25)',
+              }}
+            >
+              {/* Pin */}
+              <div style={{
+                position: 'absolute',
+                top: '10px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '16px',
+                height: '16px',
+                borderRadius: '50%',
+                background: 'var(--red)',
+                boxShadow: '0 2px 8px rgba(168,0,0,0.6)',
+                zIndex: 2,
+              }} />
+
+              <div
+                style={{
+                  borderRadius: '18px',
+                  overflow: 'hidden',
+                  background: '#000',
+                  cursor: 'pointer',
+                }}
+                onClick={() => setLightboxOpen(true)}
+              >
+                <img
+                  src={monthlyImageUrl}
+                  alt="monthly activity"
+                  style={{
+                    width: '460px',
+                    maxHeight: '600px',
+                    objectFit: 'contain',
+                    display: 'block',
+                  }}
+                />
+              </div>
+            </motion.div>
+          )}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1024px) {
+          .hero-monthly-frame { display: none !important; }
+        }
+      `}</style>
+
+      {/* Lightbox */}
+      {lightboxOpen && monthlyImageUrl && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setLightboxOpen(false)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 1000,
+            background: 'rgba(0,0,0,0.85)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backdropFilter: 'blur(6px)',
+          }}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.88 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.25 }}
+            onClick={(e) => e.stopPropagation()}
+            style={{ position: 'relative' }}
+          >
+            <button
+              onClick={() => setLightboxOpen(false)}
+              style={{
+                position: 'absolute',
+                top: '-16px',
+                right: '-16px',
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                background: '#fff',
+                border: 'none',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 1,
+                boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1 1l12 12M13 1L1 13" stroke="#111" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </button>
+            <img
+              src={monthlyImageUrl}
+              alt="monthly activity"
+              style={{
+                maxWidth: '90vw',
+                maxHeight: '90vh',
+                borderRadius: '16px',
+                display: 'block',
+                objectFit: 'contain',
+                boxShadow: '0 40px 120px rgba(0,0,0,0.7)',
+              }}
+            />
+          </motion.div>
+        </motion.div>
+      )}
 
       {/* Scroll indicator */}
       <motion.div
