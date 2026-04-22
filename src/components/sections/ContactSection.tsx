@@ -79,33 +79,17 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      style={{
-        background: "#F7F3ED",
-        padding: "clamp(80px, 10vw, 130px) 24px",
-        position: "relative",
-        overflow: "hidden",
-      }}
+      className="section-base section-pad"
+      style={{ background: "#F7F3ED" }}
     >
       <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "1px",
-          background:
-            "linear-gradient(90deg, transparent, rgba(31,41,55,0.14), transparent)",
-          pointerEvents: "none",
-        }}
+        className="section-edge section-edge--top"
+        style={{ background: "linear-gradient(90deg, transparent, rgba(31,41,55,0.14), transparent)" }}
       />
 
       <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          position: "relative",
-          zIndex: 1,
-        }}
+        className="container-lg"
+        style={{ position: "relative", zIndex: 1 }}
       >
         {/* ── Header ───────────────────────────────────── */}
         <motion.div
@@ -140,7 +124,7 @@ export default function ContactSection() {
             }}
           >
             {t("contact.title")}{" "}
-            <span style={{ color: "var(--red)", fontStyle: "italic" }}>
+            <span className="text-accent">
               {t("contact.titleAccent")}
             </span>
           </h2>
@@ -431,33 +415,8 @@ export default function ContactSection() {
                 href="https://www.google.com/maps/search/?api=1&query=Da+Vinci+Board+Game+Cafe+Neorama+Ankara"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  background: "var(--red)",
-                  color: "#fff",
-                  padding: "13px 22px",
-                  borderRadius: "100px",
-                  fontWeight: 700,
-                  fontSize: "0.88rem",
-                  transition: "all 0.2s ease",
-                  boxShadow: "0 4px 20px rgba(168,0,0,0.22)",
-                  whiteSpace: "nowrap",
-                  textDecoration: "none",
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget;
-                  el.style.background = "var(--red-dark)";
-                  el.style.transform = "translateY(-2px)";
-                  el.style.boxShadow = "0 8px 28px rgba(168,0,0,0.30)";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget;
-                  el.style.background = "var(--red)";
-                  el.style.transform = "translateY(0)";
-                  el.style.boxShadow = "0 4px 20px rgba(168,0,0,0.22)";
-                }}
+                className="btn-cta"
+                style={{ padding: "13px 22px", fontSize: "0.88rem" }}
               >
                 <svg
                   width="14"

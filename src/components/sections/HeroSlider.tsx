@@ -26,7 +26,7 @@ export default function HeroSlider() {
   const { t } = useTranslation()
 
   return (
-    <section id="home" style={{ position: 'relative', height: '100vh', minHeight: '600px', overflow: 'hidden' }}>
+    <section id="home" className="section-base" style={{ height: '100vh', minHeight: '600px' }}>
       <Swiper
         modules={[Autoplay, Pagination, Navigation, EffectFade]}
         effect="fade"
@@ -81,7 +81,7 @@ export default function HeroSlider() {
         paddingTop: '80px',
         pointerEvents: 'none',
       }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', width: '100%', pointerEvents: 'auto' }}>
+        <div className="container-xl" style={{ width: '100%', pointerEvents: 'auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -125,11 +125,7 @@ export default function HeroSlider() {
           >
             {t('hero.title')}
             <br />
-            <span style={{
-              color: 'var(--red)',
-              fontStyle: 'italic',
-              WebkitTextStroke: 'none',
-            }}>
+            <span className="text-accent" style={{ WebkitTextStroke: 'none' }}>
               {t('hero.titleAccent')}
             </span>
           </motion.h1>

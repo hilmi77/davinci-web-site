@@ -13,12 +13,8 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      style={{
-        background: 'var(--section-1)',
-        padding: 'clamp(80px, 10vw, 130px) 24px',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
+      className="section-base section-pad"
+      style={{ background: 'var(--section-1)' }}
     >
       {/* Subtle top divider gradient */}
       <div style={{
@@ -31,7 +27,7 @@ export default function AboutSection() {
         pointerEvents: 'none',
       }} />
 
-      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+      <div className="container-xl">
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -113,7 +109,7 @@ export default function AboutSection() {
               marginBottom: '20px',
             }}>
               {t('about.title')}{' '}
-              <span style={{ color: 'var(--red)', fontStyle: 'italic' }}>
+              <span className="text-accent">
                 {t('about.titleAccent')}
               </span>
             </h2>

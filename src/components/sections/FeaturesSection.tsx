@@ -92,17 +92,13 @@ export default function FeaturesSection() {
 
   return (
     <section
-      style={{
-        background: '#EDE8DF',
-        padding: 'clamp(64px, 10vw, 130px) 24px',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
+      className="section-base"
+      style={{ background: '#EDE8DF', padding: 'clamp(64px, 10vw, 130px) 24px' }}
     >
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(31,41,55,0.18), transparent)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(31,41,55,0.18), transparent)', pointerEvents: 'none' }} />
+      <div className="section-edge section-edge--top" style={{ background: 'linear-gradient(90deg, transparent, rgba(31,41,55,0.18), transparent)' }} />
+      <div className="section-edge section-edge--bottom" style={{ background: 'linear-gradient(90deg, transparent, rgba(31,41,55,0.18), transparent)' }} />
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+      <div className="container-lg" style={{ position: 'relative', zIndex: 1 }}>
 
         {/* Header */}
         <motion.div
@@ -112,7 +108,7 @@ export default function FeaturesSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <span className="section-badge section-badge--dark" style={{ display: 'inline-flex', margin: '0 auto 20px' }}>
+          <span className="section-badge section-badge--dark" style={{ margin: '0 auto 20px' }}>
             {t('features.badge')}
           </span>
           <h2 style={{
@@ -123,7 +119,7 @@ export default function FeaturesSection() {
             lineHeight: 1.15,
           }}>
             {t('features.title')}{' '}
-            <span style={{ color: 'var(--red)', fontStyle: 'italic' }}>
+            <span className="text-accent">
               {t('features.titleAccent')}
             </span>
           </h2>

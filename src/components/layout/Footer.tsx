@@ -18,9 +18,8 @@ export default function Footer() {
         }}
       >
         <div
+          className="container-xl"
           style={{
-            maxWidth: "1280px",
-            margin: "0 auto",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",

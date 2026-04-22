@@ -49,9 +49,7 @@ export default function Header() {
           padding: scrolled ? '10px 0' : '20px 0',
         }}
       >
-        <div style={{
-          maxWidth: '1280px',
-          margin: '0 auto',
+        <div className="container-xl" style={{
           padding: '0 24px',
           display: 'flex',
           alignItems: 'center',
