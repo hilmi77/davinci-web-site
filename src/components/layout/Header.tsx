@@ -79,7 +79,8 @@ export default function Header() {
                 href={href}
                 target={external ? '_blank' : undefined}
                 rel={external ? 'noopener noreferrer' : undefined}
-                whileHover={{ color: navLinkHoverColor }}
+                whileHover={{ color: navLinkHoverColor, y: 3 }}
+                transition={{ duration: 0.1 }}
                 style={{
                   fontSize: '0.82rem',
                   fontWeight: 500,

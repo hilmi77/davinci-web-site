@@ -126,7 +126,7 @@ export default function SlideHero({ monthlyImageUrl, onMonthlyImageClick }: Slid
         <img
           src={monthlyImageUrl}
           alt="monthly activity"
-          style={{ width: isMobile ? '100%' : '460px', maxHeight: isMobile ? undefined : '600px', objectFit: 'contain', display: 'block' }}
+          style={{ width: isMobile ? '100%' : '520px', maxHeight: isMobile ? undefined : '600px', objectFit: 'contain', display: 'block' }}
         />
       </div>
     </motion.div>

@@ -72,14 +72,14 @@ export default function SlideAbout() {
           >
             
             <h2 style={{
-              fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontFamily: 'var(--font-body)', fontSize: 'clamp(2rem, 4vw, 3rem)',
               fontWeight: 700, lineHeight: 1.15, color: '#fff', marginBottom: '20px',
             }}>
               {t('Welcome to')}{' '}
               {t("Da Vinci's World")}
             </h2>
             <p style={{
-              fontSize: isMobile ? '0.98rem' : '1.15rem', color: 'rgba(255,255,255,0.75)', lineHeight: isMobile ? 1.6 : 1.85,
+              fontSize: isMobile ? '1.08rem' : '1.28rem', color: 'rgba(255,255,255,0.9)', lineHeight: isMobile ? 1.6 : 1.85,
               marginBottom: isMobile ? '20px' : '40px', maxWidth: '480px',
             }}>
               {t('Since 2017, we have been keeping board game culture alive in Ankara, presenting hundreds of games with our experienced team. We have become a home for game lovers of all ages and experience levels.')}

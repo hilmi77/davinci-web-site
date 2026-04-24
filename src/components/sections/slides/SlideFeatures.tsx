@@ -45,10 +45,10 @@ function Polaroid({ src, title, desc, rotate, delay, imgHeight }: {
         <img src={src} alt={title} style={{ width: '100%', height: imgHeight, objectFit: 'cover', display: 'block' }} />
       </div>
       <div style={{ marginTop: '8px', padding: '0 4px' }}>
-        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: '5px', lineHeight: 1.3 }}>
+        <h3 style={{ fontFamily: 'var(--font-body)', fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: '5px', lineHeight: 1.3 }}>
           {title}
         </h3>
-        <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.72)', lineHeight: 1.5 }}>
+        <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.72)', lineHeight: 1.5 }}>
           {desc}
         </p>
       </div>
@@ -95,7 +95,7 @@ export default function SlideFeatures() {
         >
           
           <h2 style={{
-            fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem, 3vw, 2.4rem)',
+            fontFamily: 'var(--font-body)', fontSize: 'clamp(1.5rem, 3vw, 2.4rem)',
             fontWeight: 700, color: '#fff', lineHeight: 1.15,
           }}>
             {t('Experience')}{' '}
