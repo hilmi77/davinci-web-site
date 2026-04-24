@@ -34,8 +34,8 @@ export default function Footer() {
               fontFamily: "var(--font-body)",
             }}
           >
-            © {new Date().getFullYear()} {t("footer.madeWith")}.{" "}
-            {t("footer.rights")}
+            © {new Date().getFullYear()} {t("Da Vinci Board Game Cafe")}.{" "}
+            {t("All rights reserved.")}
           </p>
           <div style={{ display: "flex", gap: "4px", alignItems: "center" }}>
             <span

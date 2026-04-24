@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 
 const NAV_LINKS = [
-  { key: 'nav.gameCheck', href: 'https://buoyunvarmi.davinciboardgame.com', external: true },
-  { key: 'nav.tableCheck', href: 'https://yervarmi.davinciboardgame.com', external: true },
-  { key: 'nav.buyGames', href: 'https://kutuoyunual.com', external: true },
-  { key: 'nav.menu', href: 'https://menu.davinciboardgame.com/2', external: true },
-  { key: 'nav.about', href: '#about', external: false },
-  { key: 'nav.contact', href: '#contact', external: false },
+  { label: 'Is This Game at the Cafe?', href: 'https://buoyunvarmi.davinciboardgame.com', external: true },
+  { label: 'Is There Space at the Cafe?', href: 'https://yervarmi.davinciboardgame.com', external: true },
+  { label: 'Buy Games', href: 'https://kutuoyunual.com', external: true },
+  { label: 'Menu', href: 'https://menu.davinciboardgame.com/2', external: true },
+  { label: 'About', href: '#about', external: false },
+  { label: 'Contact', href: '#contact', external: false },
 ]
 
 export default function Header() {
@@ -74,9 +74,9 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav style={{ display: 'flex', alignItems: 'center', gap: '2px' }} className="desktop-nav">
-            {NAV_LINKS.map(({ key, href, external }) => (
+            {NAV_LINKS.map(({ label, href, external }) => (
               <motion.a
-                key={key}
+                key={label}
                 href={href}
                 target={external ? '_blank' : undefined}
                 rel={external ? 'noopener noreferrer' : undefined}
@@ -93,7 +93,7 @@ export default function Header() {
                 }}
                 onClick={() => setMenuOpen(false)}
               >
-                {t(key)}
+                {t(label)}
               </motion.a>
             ))}
           </nav>
@@ -147,7 +147,7 @@ export default function Header() {
               }}
               className="header-cta"
             >
-              {t('nav.tableCheck')}
+              {t('Is There Space at the Cafe?')}
             </motion.a>
 
             {/* Hamburger */}
@@ -210,9 +210,9 @@ export default function Header() {
               boxShadow: '-4px 0 40px rgba(0,0,0,0.12)',
             }}
           >
-            {NAV_LINKS.map(({ key, href, external }, idx) => (
+            {NAV_LINKS.map(({ label, href, external }, idx) => (
               <motion.a
-                key={key}
+                key={label}
                 href={href}
                 target={external ? '_blank' : undefined}
                 rel={external ? 'noopener noreferrer' : undefined}
@@ -229,7 +229,7 @@ export default function Header() {
                 }}
                 onClick={() => setMenuOpen(false)}
               >
-                {t(key)}
+                {t(label)}
               </motion.a>
             ))}
             <motion.button

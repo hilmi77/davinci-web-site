@@ -56,19 +56,19 @@ const SOCIALS = [
   {
     href: "https://www.instagram.com/davinciboardgamecafe",
     icon: <InstagramIcon />,
-    labelKey: "contact.instagram",
+    label: "Instagram",
     handle: "@davinciboardgamecafe",
   },
   {
     href: "https://wa.me/905064772300",
     icon: <WhatsAppIcon />,
-    labelKey: "contact.whatsapp",
+    label: "WhatsApp Group",
     handle: "+90 506 477 23 00",
   },
   {
     href: "https://www.youtube.com/channel/UCwk9bgTaFXgwmlFrBGskj-A",
     icon: <YouTubeIcon />,
-    labelKey: "contact.youtube",
+    label: "YouTube",
     handle: "youtube.com/@davinci",
   },
 ];
@@ -109,10 +109,10 @@ export default function ContactSection() {
             }}
           >
             <span className="section-badge section-badge--red">
-              {t("contact.badge")}
+              {t("Contact")}
             </span>
             <span className="section-badge section-badge--dark">
-              {t("location.badge")}
+              {t("Find Us")}
             </span>
           </div>
           <h2
@@ -124,9 +124,9 @@ export default function ContactSection() {
               lineHeight: 1.15,
             }}
           >
-            {t("contact.title")}{" "}
+            {t("Get")}{" "}
             <span className="text-accent">
-              {t("contact.titleAccent")}
+              {t("In Touch")}
             </span>
           </h2>
         </motion.div>
@@ -256,12 +256,12 @@ export default function ContactSection() {
                 marginBottom: "12px",
               }}
             >
-              {t("contact.followUs")}
+              {t("Follow us")}
             </p>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              {SOCIALS.map(({ href, icon, labelKey, handle }) => (
+              {SOCIALS.map(({ href, icon, label, handle }) => (
                 <a
-                  key={labelKey}
+                  key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -292,7 +292,7 @@ export default function ContactSection() {
                     {icon}
                   </span>
                   <span style={{ fontSize: "0.88rem", fontWeight: 600 }}>
-                    {t(labelKey)}
+                    {t(label)}
                   </span>
                   <span
                     style={{
@@ -328,7 +328,7 @@ export default function ContactSection() {
                 fontStyle: "italic",
               }}
             >
-              {t("location.address")}
+              {t("Neorama Business Center, Beştepe Mah. Yaşam Cd, Adalet Street No:4/B, 06510 Çankaya/Ankara")}
             </p>
           </motion.div>
 
@@ -392,7 +392,7 @@ export default function ContactSection() {
                     marginBottom: "10px",
                   }}
                 >
-                  {t("location.hours")}
+                  {t("Working Hours")}
                 </p>
                 <div
                   style={{
@@ -402,12 +402,12 @@ export default function ContactSection() {
                   }}
                 >
                   <HourLine
-                    label={t("location.weekdays")}
-                    hours={t("location.weekdaysHours")}
+                    label={t("Weekdays")}
+                    hours={t("12:00 – 00:00")}
                   />
                   <HourLine
-                    label={t("location.weekends")}
-                    hours={t("location.weekendsHours")}
+                    label={t("Weekends")}
+                    hours={t("10:00 – 00:00")}
                   />
                 </div>
               </div>
@@ -432,7 +432,7 @@ export default function ContactSection() {
                   <path d="M12 22s-8-6-8-13A8 8 0 0120 9c0 7-8 13-8 13z" />
                   <circle cx="12" cy="9" r="3" />
                 </svg>
-                {t("location.getDirections")}
+                {t("Get Directions")}
               </a>
             </div>
           </motion.div>

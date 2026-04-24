@@ -15,6 +15,33 @@ const IMG_HEIGHTS_DESKTOP: Record<string, number> = {
   lib: 440, game: 200, salon: 200, menu: 185, event: 200,
 }
 
+const FEATURES = [
+  {
+    title: 'Extensive Game Library',
+    desc: 'With over 500 board games, we offer options for every taste — from strategy to cooperative, family games to party games.',
+  },
+  {
+    title: 'Experienced Game Guides',
+    desc: 'Our expert team is ready to teach you any game and make your gaming experience as enjoyable as possible.',
+  },
+  {
+    title: 'Comfortable Environment',
+    desc: 'With wide tables, comfortable chairs and special lighting, you will feel at home in our venue designed for hours of play.',
+  },
+  {
+    title: 'Delicious Menu',
+    desc: 'From coffee to snacks, our rich menu completes your gaming table experience.',
+  },
+  {
+    title: 'Events and Tournaments',
+    desc: 'Become part of our gaming community with regularly organized tournaments and special events.',
+  },
+  {
+    title: 'Group Reservations',
+    desc: 'Birthday, bachelor party, corporate event — you can make special table reservations for all your special days.',
+  },
+]
+
 function Polaroid({
   src, title, desc, rotate, delay, imgHeight,
 }: {
@@ -88,7 +115,6 @@ export default function FeaturesSection() {
   const { t } = useTranslation()
   const isMobile = useIsMobile()
   const isTablet = useIsMobile(1024)
-  const items = t('features.items', { returnObjects: true }) as { title: string; desc: string }[]
 
   return (
     <section
@@ -109,7 +135,7 @@ export default function FeaturesSection() {
           transition={{ duration: 0.7 }}
         >
           <span className="section-badge section-badge--dark" style={{ margin: '0 auto 20px' }}>
-            {t('features.badge')}
+            {t('Why Da Vinci?')}
           </span>
           <h2 style={{
             fontFamily: 'var(--font-display)',
@@ -118,9 +144,9 @@ export default function FeaturesSection() {
             color: 'var(--black)',
             lineHeight: 1.15,
           }}>
-            {t('features.title')}{' '}
+            {t('Experience')}{' '}
             <span className="text-accent">
-              {t('features.titleAccent')}
+              {t('The Difference')}
             </span>
           </h2>
         </motion.div>
@@ -132,8 +158,8 @@ export default function FeaturesSection() {
               <Polaroid
                 key={photo.area}
                 src={photo.src}
-                title={items[photo.featureIdx]?.title ?? ''}
-                desc={items[photo.featureIdx]?.desc ?? ''}
+                title={t(FEATURES[photo.featureIdx].title)}
+                desc={t(FEATURES[photo.featureIdx].desc)}
                 rotate={photo.rotate * 0.5}
                 delay={i * 0.07}
                 imgHeight={200}
@@ -154,8 +180,8 @@ export default function FeaturesSection() {
               <Polaroid
                 key={photo.area}
                 src={photo.src}
-                title={items[photo.featureIdx]?.title ?? ''}
-                desc={items[photo.featureIdx]?.desc ?? ''}
+                title={t(FEATURES[photo.featureIdx].title)}
+                desc={t(FEATURES[photo.featureIdx].desc)}
                 rotate={photo.rotate}
                 delay={i * 0.08}
                 imgHeight={220}
@@ -188,8 +214,8 @@ export default function FeaturesSection() {
               >
                 <Polaroid
                   src={photo.src}
-                  title={items[photo.featureIdx]?.title ?? ''}
-                  desc={items[photo.featureIdx]?.desc ?? ''}
+                  title={t(FEATURES[photo.featureIdx].title)}
+                  desc={t(FEATURES[photo.featureIdx].desc)}
                   rotate={photo.rotate}
                   delay={i * 0.09}
                   imgHeight={IMG_HEIGHTS_DESKTOP[photo.area]}
@@ -226,7 +252,7 @@ export default function FeaturesSection() {
               marginBottom: '8px',
               lineHeight: 1.25,
             }}>
-              {items[5]?.title}
+              {t(FEATURES[5].title)}
             </h3>
             <p style={{
               fontSize: 'clamp(0.8rem, 1.5vw, 0.88rem)',
@@ -234,7 +260,7 @@ export default function FeaturesSection() {
               opacity: 0.9,
               maxWidth: '600px',
             }}>
-              {items[5]?.desc}
+              {t(FEATURES[5].desc)}
             </p>
           </div>
           {!isMobile && (

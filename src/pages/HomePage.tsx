@@ -14,13 +14,11 @@ export default function HomePage() {
         <html lang={i18n.language} />
         <title>
           Da Vinci Board Game Cafe |{" "}
-          {i18n.language === "tr"
-            ? "Türkiye'nin En Büyük Kutu Oyunu Kafesi"
-            : "Turkey's Largest Board Game Cafe"}
+          {t("Turkey's Largest Board Game Cafe")}
         </title>
-        <meta name="description" content={t("hero.subtitle")} />
+        <meta name="description" content={t("With hundreds of board games and our experienced team, we welcome you to a fun-filled experience..")} />
         <meta property="og:title" content="Da Vinci Board Game Cafe" />
-        <meta property="og:description" content={t("hero.subtitle")} />
+        <meta property="og:description" content={t("With hundreds of board games and our experienced team, we welcome you to a fun-filled experience..")} />
         <meta
           property="og:locale"
           content={i18n.language === "tr" ? "tr_TR" : "en_US"}

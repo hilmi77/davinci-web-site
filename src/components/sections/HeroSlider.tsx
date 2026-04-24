@@ -7,7 +7,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
-import { fetchLatestMonthlyActivity } from '../../services/menuService'
+import { fetchLatestMonthlyActivity } from '../../utils/api/monthlyActivity/monthlyActivity'
 
 const HERO_ROWS = (() => {
   let idx = 0
@@ -139,7 +139,7 @@ export default function HeroSlider() {
                 lineHeight: 1.7,
               }}
             >
-              {t('hero.subtitle')}
+              {t('With hundreds of board games and our experienced team, we welcome you to a fun-filled experience..')}
             </motion.p>
 
             <motion.div
@@ -168,7 +168,7 @@ export default function HeroSlider() {
                   fontFamily: 'var(--font-body)',
                 }}
               >
-                {t('hero.cta')}
+                {t('Make a Reservation')}
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
@@ -195,7 +195,7 @@ export default function HeroSlider() {
                   fontFamily: 'var(--font-body)',
                 }}
               >
-                {t('hero.ctaSecondary')}
+                {t('Explore Games')}
               </motion.a>
             </motion.div>
           </div>

@@ -24,7 +24,7 @@ export default function LocationSection() {
 
       <div className="container-xl">
         <AnimatedSection style={{ marginBottom: 'clamp(40px, 5vw, 64px)' }}>
-          <span className="section-badge section-badge--red">{t('location.badge')}</span>
+          <span className="section-badge section-badge--red">{t('Find Us')}</span>
           <h2 style={{
             fontFamily: 'var(--font-display)',
             fontSize: 'clamp(2rem, 4vw, 3.2rem)',
@@ -32,10 +32,10 @@ export default function LocationSection() {
             color: 'var(--black)',
             lineHeight: 1.15,
           }}>
-            {t('location.title')}{' '}
-            <span className="text-accent">{t('location.titleAccent')}</span>
-            {t('location.title2') ? (
-              <><br />{t('location.title2')}</>
+            {t('We Know')}{' '}
+            <span className="text-accent">{t('Where')}</span>
+            {t('We Are') ? (
+              <><br />{t('We Are')}</>
             ) : null}
           </h2>
         </AnimatedSection>
@@ -73,7 +73,7 @@ export default function LocationSection() {
               {/* Address */}
               <InfoCard
                 icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s-8-6-8-13A8 8 0 0120 9c0 7-8 13-8 13z"/><circle cx="12" cy="9" r="3"/></svg>}
-                label={t('location.address')}
+                label={t('Neorama Business Center, Beştepe Mah. Yaşam Cd, Adalet Street No:4/B, 06510 Çankaya/Ankara')}
               />
 
               {/* Hours */}
@@ -91,12 +91,12 @@ export default function LocationSection() {
                     </svg>
                   </div>
                   <span style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 600, color: 'var(--black)' }}>
-                    {t('location.hours')}
+                    {t('Working Hours')}
                   </span>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  <HourRow label={t('location.weekdays')} hours={t('location.weekdaysHours')} />
-                  <HourRow label={t('location.weekends')} hours={t('location.weekendsHours')} />
+                  <HourRow label={t('Weekdays')} hours={t('12:00 – 00:00')} />
+                  <HourRow label={t('Weekends')} hours={t('10:00 – 00:00')} />
                 </div>
               </div>
 
@@ -111,7 +111,7 @@ export default function LocationSection() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 22s-8-6-8-13A8 8 0 0120 9c0 7-8 13-8 13z"/><circle cx="12" cy="9" r="3"/>
                 </svg>
-                {t('location.getDirections')}
+                {t('Get Directions')}
               </a>
             </div>
           </AnimatedSection>

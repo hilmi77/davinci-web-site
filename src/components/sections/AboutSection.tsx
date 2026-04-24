@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next'
 import AnimatedSection from '../ui/AnimatedSection'
 
 const STATS = [
-  { valueKey: 'about.stat1Value', labelKey: 'about.stat1Label' },
-  { valueKey: 'about.stat2Value', labelKey: 'about.stat2Label' },
-  { valueKey: 'about.stat3Value', labelKey: 'about.stat3Label' },
+  { value: '500+', label: 'Different Games' },
+  { value: '7', label: 'Years of Experience' },
+  { value: '1000+', label: 'Happy Players' },
 ]
 
 export default function AboutSection() {
@@ -85,10 +85,10 @@ export default function AboutSection() {
                 borderLeft: '3px solid var(--red-light)',
               }}>
                 <div style={{ fontSize: '1.9rem', fontWeight: 900, fontFamily: 'var(--font-display)', color: 'var(--yellow)', lineHeight: 1 }}>
-                  {t('about.stat1Value')}
+                  {t('500+')}
                 </div>
                 <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.55)', fontWeight: 500, marginTop: '4px' }}>
-                  {t('about.stat1Label')}
+                  {t('Different Games')}
                 </div>
               </div>
             </div>
@@ -97,7 +97,7 @@ export default function AboutSection() {
           {/* Text side */}
           <AnimatedSection direction="right" delay={0.2}>
             <span className="section-badge section-badge--soft">
-              {t('about.badge')}
+              {t('About Us')}
             </span>
 
             <h2 style={{
@@ -108,9 +108,9 @@ export default function AboutSection() {
               color: 'var(--black)',
               marginBottom: '20px',
             }}>
-              {t('about.title')}{' '}
+              {t('Welcome to')}{' '}
               <span className="text-accent">
-                {t('about.titleAccent')}
+                {t("Da Vinci's World")}
               </span>
             </h2>
 
@@ -121,12 +121,12 @@ export default function AboutSection() {
               marginBottom: '40px',
               maxWidth: '480px',
             }}>
-              {t('about.description')}
+              {t('Since 2017, we have been keeping board game culture alive in Ankara, presenting hundreds of games with our experienced team. We have become a home for game lovers of all ages and experience levels.')}
             </p>
 
             {/* Stats row */}
             <div style={{ display: 'flex', gap: '28px', flexWrap: 'wrap' }}>
-              {STATS.map(({ valueKey, labelKey }, idx) => (
+              {STATS.map(({ value, label }, idx) => (
                 <div key={idx} style={{
                   borderLeft: '2px solid var(--gray-300)',
                   paddingLeft: '16px',
@@ -138,10 +138,10 @@ export default function AboutSection() {
                     color: 'var(--black)',
                     lineHeight: 1,
                   }}>
-                    {t(valueKey)}
+                    {t(value)}
                   </div>
                   <div style={{ fontSize: '0.78rem', color: 'var(--gray-500)', fontWeight: 500, marginTop: '4px' }}>
-                    {t(labelKey)}
+                    {t(label)}
                   </div>
                 </div>
               ))}
