@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 
 const NAV_LINKS = [
-  { label: 'Is This Game at the Cafe?', href: 'https://buoyunvarmi.davinciboardgame.com', external: true },
-  { label: 'Is There Space at the Cafe?', href: 'https://yervarmi.davinciboardgame.com', external: true },
-  { label: 'Buy Games', href: 'https://kutuoyunual.com', external: true },
-  { label: 'Menu', href: 'https://menu.davinciboardgame.com/2', external: true },
+  { label: 'Is This Game at the Cafe?', href: 'https://buoyunvarmi.davinciboardgame.com', external: false },
+  { label: 'Is There Space at the Cafe?', href: 'https://yervarmi.davinciboardgame.com', external: false },
+  { label: 'Buy Games', href: 'https://kutuoyunual.com', external: false },
+  { label: 'Menu', href: 'https://menu.davinciboardgame.com/2', external: false },
   { label: 'Contact', href: '#contact', external: false },
 ]
 
