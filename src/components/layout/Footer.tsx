@@ -17,47 +17,17 @@ export default function Footer() {
           padding: "20px 24px",
         }}
       >
-        <div
-          className="container-xl"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "12px",
-          }}
-        >
+        <div className="container-xl" style={{ textAlign: "center" }}>
           <p
             style={{
               fontSize: "0.78rem",
-              color: "rgba(255,255,255,0.22)",
+              color: "rgba(255,255,255,0.5)",
               fontFamily: "var(--font-body)",
             }}
           >
             © {new Date().getFullYear()} {t("Da Vinci Board Game Cafe")}.{" "}
             {t("All rights reserved.")}
           </p>
-          <div style={{ display: "flex", gap: "4px", alignItems: "center" }}>
-            <span
-              style={{
-                width: "6px",
-                height: "6px",
-                borderRadius: "50%",
-                background: "var(--red-light)",
-                display: "inline-block",
-                opacity: 0.7,
-              }}
-            />
-            <span
-              style={{
-                fontSize: "0.76rem",
-                color: "rgba(255,255,255,0.2)",
-                fontFamily: "var(--font-body)",
-              }}
-            >
-              Da Vinci Board Game Cafe, Ankara
-            </span>
-          </div>
         </div>
       </div>
     </footer>

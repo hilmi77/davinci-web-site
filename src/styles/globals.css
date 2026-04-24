@@ -113,29 +113,64 @@ button {
   border-radius: 5px !important;
 }
 
+@keyframes nudge-right {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+}
+
+@keyframes nudge-left {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-6px); }
+}
+
+@keyframes arrow-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
 .swiper-button-next,
 .swiper-button-prev {
-  color: #fff !important;
-  background: rgba(168, 0, 0, 0.85) !important;
-  width: 44px !important;
-  height: 44px !important;
-  border-radius: 50% !important;
-  backdrop-filter: blur(8px) !important;
+  color: #c00 !important;
+  background: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  width: 48px !important;
+  height: 48px !important;
   z-index: 20 !important;
   top: 50% !important;
-  transition: background 0.2s ease !important;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3) !important;
+  transition: color 0.2s ease !important;
+}
+
+.swiper-button-next {
+  animation: nudge-right 1.6s ease-in-out infinite, arrow-pulse 1.6s ease-in-out infinite !important;
+}
+
+.swiper-button-prev {
+  animation: nudge-left 1.6s ease-in-out infinite, arrow-pulse 1.6s ease-in-out infinite !important;
 }
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  background: rgba(84, 0, 0, 0.95) !important;
+  color: #900 !important;
+  animation-play-state: paused !important;
 }
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  font-size: 14px !important;
-  font-weight: 900 !important;
+  content: '' !important;
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+}
+
+.swiper-button-next::after {
+  transform: rotate(45deg);
+}
+
+.swiper-button-prev::after {
+  transform: rotate(-135deg);
 }
 
 /* ─── Utility ────────────────────────────────────────────────── */

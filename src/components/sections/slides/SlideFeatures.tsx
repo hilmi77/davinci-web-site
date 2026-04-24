@@ -11,7 +11,7 @@ const PHOTOS = [
 ]
 
 const IMG_HEIGHTS_DESKTOP: Record<string, number> = {
-  lib: 440, game: 200, salon: 200, menu: 185, event: 200,
+  lib: 380, game: 155, salon: 155, menu: 145, event: 155,
 }
 
 const FEATURES = [
@@ -20,7 +20,6 @@ const FEATURES = [
   { title: 'Comfortable Environment', desc: 'With wide tables, comfortable chairs and special lighting, you will feel at home in our venue designed for hours of play.' },
   { title: 'Delicious Menu', desc: 'From coffee to snacks, our rich menu completes your gaming table experience.' },
   { title: 'Events and Tournaments', desc: 'Become part of our gaming community with regularly organized tournaments and special events.' },
-  { title: 'Group Reservations', desc: 'Birthday, bachelor party, corporate event — you can make special table reservations for all your special days.' },
 ]
 
 function Polaroid({ src, title, desc, rotate, delay, imgHeight }: {
@@ -45,11 +44,11 @@ function Polaroid({ src, title, desc, rotate, delay, imgHeight }: {
       }}>
         <img src={src} alt={title} style={{ width: '100%', height: imgHeight, objectFit: 'cover', display: 'block' }} />
       </div>
-      <div style={{ marginTop: '14px', padding: '0 4px' }}>
-        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', fontWeight: 700, color: 'var(--black)', marginBottom: '5px', lineHeight: 1.3 }}>
+      <div style={{ marginTop: '8px', padding: '0 4px' }}>
+        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: '5px', lineHeight: 1.3 }}>
           {title}
         </h3>
-        <p style={{ fontSize: '0.81rem', color: 'var(--gray-600)', lineHeight: 1.68 }}>
+        <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.72)', lineHeight: 1.5 }}>
           {desc}
         </p>
       </div>
@@ -80,25 +79,27 @@ export default function SlideFeatures() {
 
       <div style={{
         position: 'absolute', inset: 0, zIndex: 10,
-        overflowY: 'auto', padding: 'clamp(64px, 10vw, 100px) 24px',
+        overflowY: isTablet ? 'auto' : 'hidden',
+        padding: isTablet ? 'clamp(64px, 10vw, 100px) 24px' : '40px 24px',
+        display: 'flex', flexDirection: 'column', justifyContent: isTablet ? 'flex-start' : 'center',
       }}>
         <div className="section-edge section-edge--top" style={{ background: 'linear-gradient(90deg, transparent, rgba(31,41,55,0.18), transparent)' }} />
         <div className="section-edge section-edge--bottom" style={{ background: 'linear-gradient(90deg, transparent, rgba(31,41,55,0.18), transparent)' }} />
 
         <div className="container-lg" style={{ position: 'relative', zIndex: 1 }}>
         <motion.div
-          style={{ textAlign: 'center', marginBottom: 'clamp(36px, 6vw, 72px)' }}
+          style={{ textAlign: 'center', marginBottom: isTablet ? 'clamp(36px, 6vw, 72px)' : '24px' }}
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
           
           <h2 style={{
-            fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 4vw, 3.2rem)',
+            fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem, 3vw, 2.4rem)',
             fontWeight: 700, color: '#fff', lineHeight: 1.15,
           }}>
             {t('Experience')}{' '}
-            <span className="text-accent">{t('The Difference')}</span>
+            {t('The Difference')}
           </h2>
         </motion.div>
 
@@ -142,7 +143,7 @@ export default function SlideFeatures() {
               "lib game  salon"
               "lib menu  event"
             `,
-            gap: '40px 36px',
+            gap: '24px 28px',
             alignItems: 'start',
           }}>
             {PHOTOS.map((photo, i) => (
@@ -160,38 +161,6 @@ export default function SlideFeatures() {
           </div>
         )}
 
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          style={{
-            marginTop: 'clamp(32px, 5vw, 48px)',
-            background: 'var(--red)', borderRadius: 'var(--radius-md)',
-            padding: 'clamp(20px, 4vw, 36px) clamp(20px, 4vw, 40px)',
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            gap: '20px', color: '#fff', boxShadow: '0 8px 32px rgba(168,0,0,0.22)',
-          }}
-        >
-          <div>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.1rem, 2.5vw, 1.55rem)', fontWeight: 700, marginBottom: '8px', lineHeight: 1.25 }}>
-              {t(FEATURES[5].title)}
-            </h3>
-            <p style={{ fontSize: 'clamp(0.8rem, 1.5vw, 0.88rem)', lineHeight: 1.68, opacity: 0.9, maxWidth: '600px' }}>
-              {t(FEATURES[5].desc)}
-            </p>
-          </div>
-          {!isMobile && (
-            <div style={{
-              width: '56px', height: '56px', borderRadius: '50%',
-              border: '2px solid rgba(255,255,255,0.28)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-            }}>
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
-              </svg>
-            </div>
-          )}
-        </motion.div>
         </div>
       </div>
     </div>

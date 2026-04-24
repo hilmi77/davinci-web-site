@@ -24,7 +24,7 @@ export default function HeroSlider() {
       <Swiper
         modules={[Autoplay, Pagination, Navigation, EffectFade]}
         effect="fade"
-        autoplay={{ delay: 8000, disableOnInteraction: false }}
+        autoplay={{ delay: 15000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         navigation
         loop
@@ -44,12 +44,11 @@ export default function HeroSlider() {
         <SwiperSlide>
           <SlideFeatures />
         </SwiperSlide>
+
       </Swiper>
 
       <style>{`
-        @media (max-width: 1024px) {
-          .hero-monthly-frame { display: none !important; }
-        }
+        #home .swiper, #home .swiper-slide { user-select: none; }
       `}</style>
 
       {lightboxOpen && monthlyImageUrl && (

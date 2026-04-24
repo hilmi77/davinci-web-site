@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+import { useIsMobile } from '../../../hooks/useIsMobile'
 
 const STATS = [
   { value: '500+', label: 'Different Games' },
@@ -9,6 +10,7 @@ const STATS = [
 
 export default function SlideAbout() {
   const { t } = useTranslation()
+  const isMobile = useIsMobile()
 
   return (
     <div style={{ position: 'relative', height: '100vh', minHeight: '600px' }}>
@@ -28,34 +30,38 @@ export default function SlideAbout() {
 
       <div style={{
         position: 'absolute', inset: 0, zIndex: 10,
-        display: 'flex', alignItems: 'center',
-        padding: 'clamp(80px, 10vw, 120px) 24px',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '0 24px',
       }}>
         <div className="container-xl" style={{ width: '100%' }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: 'clamp(40px, 6vw, 80px)',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: isMobile ? '20px' : 'clamp(40px, 6vw, 80px)',
           alignItems: 'center',
         }}>
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: isMobile ? 0 : -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
           >
             <div style={{ position: 'relative' }}>
-              <div style={{ position: 'absolute', top: '-20px', left: '-20px', width: '100px', height: '100px', background: 'radial-gradient(circle, rgba(168,0,0,0.08) 0%, transparent 70%)', borderRadius: '50%', zIndex: 0 }} />
-              <div style={{ position: 'absolute', bottom: '-30px', right: '-30px', width: '140px', height: '140px', background: 'radial-gradient(circle, rgba(255,209,102,0.12) 0%, transparent 70%)', borderRadius: '50%', zIndex: 0 }} />
+              {!isMobile && (
+                <>
+                  <div style={{ position: 'absolute', top: '-20px', left: '-20px', width: '100px', height: '100px', background: 'radial-gradient(circle, rgba(168,0,0,0.08) 0%, transparent 70%)', borderRadius: '50%', zIndex: 0 }} />
+                  <div style={{ position: 'absolute', bottom: '-30px', right: '-30px', width: '140px', height: '140px', background: 'radial-gradient(circle, rgba(255,209,102,0.12) 0%, transparent 70%)', borderRadius: '50%', zIndex: 0 }} />
+                </>
+              )}
               <img
                 src="/images/kutu-oyunlari-02.jpg"
                 alt="Da Vinci Board Game Cafe"
                 style={{
-                  width: '100%', height: 'clamp(300px, 40vw, 460px)',
+                  width: '100%',
+                  height: isMobile ? '200px' : 'clamp(300px, 40vw, 460px)',
                   objectFit: 'cover', borderRadius: 'var(--radius-lg)',
                   boxShadow: 'var(--shadow-lg)', position: 'relative', zIndex: 1,
                 }}
               />
-              
             </div>
           </motion.div>
 
@@ -70,11 +76,11 @@ export default function SlideAbout() {
               fontWeight: 700, lineHeight: 1.15, color: '#fff', marginBottom: '20px',
             }}>
               {t('Welcome to')}{' '}
-              <span className="text-accent">{t("Da Vinci's World")}</span>
+              {t("Da Vinci's World")}
             </h2>
             <p style={{
-              fontSize: '1rem', color: 'rgba(255,255,255,0.75)', lineHeight: 1.85,
-              marginBottom: '40px', maxWidth: '480px',
+              fontSize: isMobile ? '0.98rem' : '1.15rem', color: 'rgba(255,255,255,0.75)', lineHeight: isMobile ? 1.6 : 1.85,
+              marginBottom: isMobile ? '20px' : '40px', maxWidth: '480px',
             }}>
               {t('Since 2017, we have been keeping board game culture alive in Ankara, presenting hundreds of games with our experienced team. We have become a home for game lovers of all ages and experience levels.')}
             </p>

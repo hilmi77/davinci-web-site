@@ -7,7 +7,6 @@ const NAV_LINKS = [
   { label: 'Is There Space at the Cafe?', href: 'https://yervarmi.davinciboardgame.com', external: true },
   { label: 'Buy Games', href: 'https://kutuoyunual.com', external: true },
   { label: 'Menu', href: 'https://menu.davinciboardgame.com/2', external: true },
-  { label: 'About', href: '#about', external: false },
   { label: 'Contact', href: '#contact', external: false },
 ]
 
@@ -167,7 +166,7 @@ export default function Header() {
                   key={i}
                   animate={{
                     rotate: menuOpen && i === 0 ? 45 : menuOpen && i === 2 ? -45 : 0,
-                    y: menuOpen && i === 0 ? 10 : menuOpen && i === 2 ? -10 : 0,
+                    y: menuOpen && i === 0 ? 7 : menuOpen && i === 2 ? -7 : 0,
                     opacity: menuOpen && i === 1 ? 0 : 1,
                   }}
                   style={{

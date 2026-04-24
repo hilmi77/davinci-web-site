@@ -52,30 +52,30 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-const SOCIALS = [
-  {
-    href: "https://www.instagram.com/davinciboardgamecafe",
-    icon: <InstagramIcon />,
-    label: "Instagram",
-    handle: "@davinciboardgamecafe",
-  },
-  {
-    href: "https://wa.me/905064772300",
-    icon: <WhatsAppIcon />,
-    label: "WhatsApp Group",
-    handle: "+90 506 477 23 00",
-  },
-  {
-    href: "https://www.youtube.com/channel/UCwk9bgTaFXgwmlFrBGskj-A",
-    icon: <YouTubeIcon />,
-    label: "YouTube",
-    handle: "youtube.com/@davinci",
-  },
-];
-
 export default function ContactSection() {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
+
+  const SOCIALS = [
+    {
+      href: "https://www.instagram.com/davinciboardgamecafe",
+      icon: <InstagramIcon />,
+      label: "Instagram",
+      handle: "@davinciboardgamecafe",
+    },
+    {
+      href: "https://chat.whatsapp.com/DSjIZmUFqXgB7Hkr6IRDGf",
+      icon: <WhatsAppIcon />,
+      label: "WhatsApp Group",
+      handle: t("Join the Group"),
+    },
+    {
+      href: "https://www.youtube.com/channel/UCwk9bgTaFXgwmlFrBGskj-A",
+      icon: <YouTubeIcon />,
+      label: "YouTube",
+      handle: "youtube.com/@davinci",
+    },
+  ];
 
   return (
     <section
