@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 const STATS = [
   { value: '500+', label: 'Different Games' },
-  { value: '7', label: 'Years of Experience' },
+  { value: String(new Date().getFullYear() - 2017), label: 'Years of Experience' },
   { value: '1000+', label: 'Happy Players' },
 ]
 
@@ -11,19 +11,27 @@ export default function SlideAbout() {
   const { t } = useTranslation()
 
   return (
-    <div style={{
-      height: '100vh', minHeight: '600px', background: 'var(--section-1)',
-      overflowY: 'auto', display: 'flex', alignItems: 'center',
-      padding: 'clamp(80px, 10vw, 120px) 24px',
-      position: 'relative',
-    }}>
+    <div style={{ position: 'relative', height: '100vh', minHeight: '600px' }}>
+      <img
+        src="/images/IMG_0478-1.jpg"
+        alt=""
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+      />
       <div style={{
-        position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
-        background: 'linear-gradient(90deg, transparent, rgba(168,0,0,0.25), transparent)',
-        pointerEvents: 'none',
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(135deg, rgba(17,24,39,0.93) 0%, rgba(17,24,39,0.65) 50%, rgba(17,24,39,0.85) 100%)',
+      }} />
+      <div style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%',
+        background: 'linear-gradient(0deg, rgba(17,24,39,1) 0%, transparent 100%)',
       }} />
 
-      <div className="container-xl" style={{ width: '100%' }}>
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 10,
+        display: 'flex', alignItems: 'center',
+        padding: 'clamp(80px, 10vw, 120px) 24px',
+      }}>
+        <div className="container-xl" style={{ width: '100%' }}>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -47,19 +55,7 @@ export default function SlideAbout() {
                   boxShadow: 'var(--shadow-lg)', position: 'relative', zIndex: 1,
                 }}
               />
-              <div style={{
-                position: 'absolute', bottom: '28px', left: '-16px',
-                background: 'var(--black)', color: '#fff', padding: '14px 22px',
-                borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-lg)',
-                zIndex: 2, borderLeft: '3px solid var(--red-light)',
-              }}>
-                <div style={{ fontSize: '1.9rem', fontWeight: 900, fontFamily: 'var(--font-display)', color: 'var(--yellow)', lineHeight: 1 }}>
-                  {t('500+')}
-                </div>
-                <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.55)', fontWeight: 500, marginTop: '4px' }}>
-                  {t('Different Games')}
-                </div>
-              </div>
+              
             </div>
           </motion.div>
 
@@ -68,33 +64,34 @@ export default function SlideAbout() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
           >
-            <span className="section-badge section-badge--soft">{t('About Us')}</span>
+            
             <h2 style={{
               fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3rem)',
-              fontWeight: 700, lineHeight: 1.15, color: 'var(--black)', marginBottom: '20px',
+              fontWeight: 700, lineHeight: 1.15, color: '#fff', marginBottom: '20px',
             }}>
               {t('Welcome to')}{' '}
               <span className="text-accent">{t("Da Vinci's World")}</span>
             </h2>
             <p style={{
-              fontSize: '1rem', color: 'var(--gray-600)', lineHeight: 1.85,
+              fontSize: '1rem', color: 'rgba(255,255,255,0.75)', lineHeight: 1.85,
               marginBottom: '40px', maxWidth: '480px',
             }}>
               {t('Since 2017, we have been keeping board game culture alive in Ankara, presenting hundreds of games with our experienced team. We have become a home for game lovers of all ages and experience levels.')}
             </p>
             <div style={{ display: 'flex', gap: '28px', flexWrap: 'wrap' }}>
               {STATS.map(({ value, label }, idx) => (
-                <div key={idx} style={{ borderLeft: '2px solid var(--gray-300)', paddingLeft: '16px' }}>
-                  <div style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 900, fontFamily: 'var(--font-display)', color: 'var(--black)', lineHeight: 1 }}>
+                <div key={idx} style={{ borderLeft: '2px solid rgba(255,255,255,0.25)', paddingLeft: '16px' }}>
+                  <div style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 900, fontFamily: 'var(--font-display)', color: '#fff', lineHeight: 1 }}>
                     {t(value)}
                   </div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--gray-500)', fontWeight: 500, marginTop: '4px' }}>
+                  <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', fontWeight: 500, marginTop: '4px' }}>
                     {t(label)}
                   </div>
                 </div>
               ))}
             </div>
           </motion.div>
+        </div>
         </div>
       </div>
     </div>

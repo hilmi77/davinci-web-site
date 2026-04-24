@@ -30,7 +30,6 @@ function Polaroid({ src, title, desc, rotate, delay, imgHeight }: {
     <motion.div
       initial={{ opacity: 0, y: 48, rotate: rotate * 2 }}
       animate={{ opacity: 1, y: 0, rotate }}
-      whileHover={{ rotate: 0, scale: 1.04, zIndex: 20 }}
       transition={{ duration: 0.85, delay, ease: [0.23, 1, 0.32, 1] }}
       style={{ position: 'relative', transformOrigin: 'center 90%', cursor: 'default' }}
     >
@@ -64,27 +63,39 @@ export default function SlideFeatures() {
   const isTablet = useIsMobile(1024)
 
   return (
-    <div style={{
-      height: '100vh', minHeight: '600px', background: '#EDE8DF',
-      overflowY: 'auto', padding: 'clamp(64px, 10vw, 100px) 24px',
-      position: 'relative',
-    }}>
-      <div className="section-edge section-edge--top" style={{ background: 'linear-gradient(90deg, transparent, rgba(31,41,55,0.18), transparent)' }} />
-      <div className="section-edge section-edge--bottom" style={{ background: 'linear-gradient(90deg, transparent, rgba(31,41,55,0.18), transparent)' }} />
+    <div style={{ position: 'relative', height: '100vh', minHeight: '600px' }}>
+      <img
+        src="/images/IMG_0477-1.jpg"
+        alt=""
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+      />
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(135deg, rgba(17,24,39,0.93) 0%, rgba(17,24,39,0.65) 50%, rgba(17,24,39,0.85) 100%)',
+      }} />
+      <div style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%',
+        background: 'linear-gradient(0deg, rgba(17,24,39,1) 0%, transparent 100%)',
+      }} />
 
-      <div className="container-lg" style={{ position: 'relative', zIndex: 1 }}>
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 10,
+        overflowY: 'auto', padding: 'clamp(64px, 10vw, 100px) 24px',
+      }}>
+        <div className="section-edge section-edge--top" style={{ background: 'linear-gradient(90deg, transparent, rgba(31,41,55,0.18), transparent)' }} />
+        <div className="section-edge section-edge--bottom" style={{ background: 'linear-gradient(90deg, transparent, rgba(31,41,55,0.18), transparent)' }} />
+
+        <div className="container-lg" style={{ position: 'relative', zIndex: 1 }}>
         <motion.div
           style={{ textAlign: 'center', marginBottom: 'clamp(36px, 6vw, 72px)' }}
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <span className="section-badge section-badge--dark" style={{ margin: '0 auto 20px' }}>
-            {t('Why Da Vinci?')}
-          </span>
+          
           <h2 style={{
             fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 4vw, 3.2rem)',
-            fontWeight: 700, color: 'var(--black)', lineHeight: 1.15,
+            fontWeight: 700, color: '#fff', lineHeight: 1.15,
           }}>
             {t('Experience')}{' '}
             <span className="text-accent">{t('The Difference')}</span>
@@ -181,6 +192,7 @@ export default function SlideFeatures() {
             </div>
           )}
         </motion.div>
+        </div>
       </div>
     </div>
   )

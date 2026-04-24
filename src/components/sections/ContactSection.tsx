@@ -108,12 +108,7 @@ export default function ContactSection() {
               flexWrap: "wrap",
             }}
           >
-            <span className="section-badge section-badge--red">
-              {t("Contact")}
-            </span>
-            <span className="section-badge section-badge--dark">
-              {t("Find Us")}
-            </span>
+            
           </div>
           <h2
             style={{
@@ -297,7 +292,7 @@ export default function ContactSection() {
                   <span
                     style={{
                       fontSize: "0.8rem",
-                      color: "var(--gray-400)",
+                      color: "inherit",
                       marginLeft: "auto",
                     }}
                   >
@@ -323,7 +318,7 @@ export default function ContactSection() {
             <p
               style={{
                 fontSize: "0.82rem",
-                color: "var(--gray-500)",
+                color: "var(--gray-700)",
                 lineHeight: 1.75,
                 fontStyle: "italic",
               }}
