@@ -9,6 +9,14 @@ import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import { fetchLatestMonthlyActivity } from '../../services/menuService'
 
+const HERO_ROWS = (() => {
+  let idx = 0
+  return ['DA', 'VINCI', 'BOARD', 'GAME'].map(row => ({
+    text: row,
+    chars: row.split('').map((char, i) => ({ char, key: `${row}-${i}`, delay: 0.3 + idx++ * 0.055 })),
+  }))
+})()
+
 const SLIDES = [
   {
     img: '/images/6d8c8b52-cd9f-46fd-94ed-9a88e0df5808.jpg',
@@ -63,7 +71,7 @@ export default function HeroSlider() {
               <div style={{
                 position: 'absolute',
                 inset: 0,
-                background: 'linear-gradient(135deg, rgba(17,24,39,0.85) 0%, rgba(17,24,39,0.4) 50%, rgba(17,24,39,0.7) 100%)',
+                background: 'linear-gradient(135deg, rgba(17,24,39,0.93) 0%, rgba(17,24,39,0.65) 50%, rgba(17,24,39,0.85) 100%)',
               }} />
               <div style={{
                 position: 'absolute',
@@ -92,53 +100,31 @@ export default function HeroSlider() {
         <div className="container-xl" style={{ width: '100%', pointerEvents: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '40px' }}>
           {/* Left: text content */}
           <div style={{ flex: '1 1 0', minWidth: 0 }}>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <span style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '0.72rem',
-                fontWeight: 700,
-                letterSpacing: '0.14em',
-                textTransform: 'uppercase',
-                padding: '6px 16px',
-                borderRadius: '100px',
-                marginBottom: '18px',
-                background: 'rgba(255,255,255,0.14)',
-                color: 'rgba(255,255,255,0.92)',
-                border: '1px solid rgba(255,255,255,0.25)',
-                backdropFilter: 'blur(10px)',
-                fontFamily: 'var(--font-body)',
-              }}>
-                <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#fff', display: 'inline-block', opacity: 0.9 }} />
-                {t('hero.badge')}
-              </span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(3rem, 8vw, 7rem)',
-                fontWeight: 900,
-                lineHeight: 1.0,
-                color: '#fff',
-                marginBottom: '8px',
-                letterSpacing: '-0.02em',
-              }}
-            >
-              {t('hero.title')}
-              <br />
-              <span className="text-accent" style={{ WebkitTextStroke: 'none' }}>
-                {t('hero.titleAccent')}
-              </span>
-            </motion.h1>
+            <div style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(2.8rem, 6.5vw, 5.5rem)',
+              fontWeight: 900,
+              lineHeight: 1.05,
+              color: '#fff',
+              letterSpacing: '-0.02em',
+              marginBottom: '24px',
+            }}>
+              {HERO_ROWS.map(({ text, chars }) => (
+                <div key={text}>
+                  {chars.map(({ char, key, delay }) => (
+                    <motion.span
+                      key={key}
+                      initial={{ opacity: 0, y: 28 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.45, delay, ease: 'easeOut' }}
+                      style={{ display: 'inline-block' }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </div>
+              ))}
+            </div>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -339,39 +325,6 @@ export default function HeroSlider() {
         </motion.div>
       )}
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        style={{
-          position: 'absolute',
-          bottom: '48px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 10,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '8px',
-        }}
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-          style={{
-            width: '28px',
-            height: '44px',
-            borderRadius: '14px',
-            border: '2px solid rgba(255,255,255,0.3)',
-            display: 'flex',
-            justifyContent: 'center',
-            paddingTop: '8px',
-          }}
-        >
-          <div style={{ width: '4px', height: '8px', borderRadius: '2px', background: 'var(--red)' }} />
-        </motion.div>
-      </motion.div>
     </section>
   )
 }
