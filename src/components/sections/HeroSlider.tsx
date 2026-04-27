@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Navigation, EffectFade } from 'swiper/modules'
 import { motion } from 'framer-motion'
@@ -6,18 +6,14 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
-import { fetchLatestMonthlyActivity } from '../../utils/api/monthlyActivity/monthlyActivity'
+import { useLatestMonthlyActivity } from '../../utils/api/monthlyActivity/monthlyActivity'
 import SlideHero from './slides/SlideHero'
 import SlideAbout from './slides/SlideAbout'
 import SlideFeatures from './slides/SlideFeatures'
 
 export default function HeroSlider() {
-  const [monthlyImageUrl, setMonthlyImageUrl] = useState<string | null>(null)
+  const { data: monthlyImageUrl } = useLatestMonthlyActivity()
   const [lightboxOpen, setLightboxOpen] = useState(false)
-
-  useEffect(() => {
-    fetchLatestMonthlyActivity().then(setMonthlyImageUrl)
-  }, [])
 
   return (
     <section id="home" className="section-base" style={{ height: '100vh', minHeight: '600px' }}>
@@ -31,7 +27,7 @@ export default function HeroSlider() {
       >
         <SwiperSlide>
           <SlideHero
-            monthlyImageUrl={monthlyImageUrl}
+            monthlyImageUrl={monthlyImageUrl ?? null}
             onMonthlyImageClick={() => setLightboxOpen(true)}
           />
         </SwiperSlide>
