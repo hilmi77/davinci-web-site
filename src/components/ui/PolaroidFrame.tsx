@@ -43,7 +43,7 @@ export default function PolaroidFrame({
       }} />
       
       {/* Content Container */}
-      <div style={{ position: 'relative', zIndex: 1 }}>
+      <div style={{ position: 'relative', zIndex: 1, height: '100%' }}>
         {children}
       </div>
     </motion.div>

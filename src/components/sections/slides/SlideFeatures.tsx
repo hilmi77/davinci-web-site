@@ -19,19 +19,19 @@ const FEATURES = [
   { title: 'Events and Tournaments', desc: 'Become part of our gaming community with regularly organized tournaments and special events.' },
 ]
 
-function Polaroid({ src, title, desc, rotate, delay }: {
-  src: string; title: string; desc: string; rotate: number; delay: number
+function Polaroid({ src, title, desc, rotate, delay, stretch }: {
+  src: string; title: string; desc: string; rotate: number; delay: number; stretch?: boolean
 }) {
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative', height: stretch ? '100%' : undefined, display: stretch ? 'flex' : undefined, flexDirection: stretch ? 'column' : undefined }}>
       <PolaroidFrame
         rotate={rotate}
         initial={{ opacity: 0, y: 48, rotate: rotate * 2 }}
         animate={{ opacity: 1, y: 0, rotate }}
         transition={{ duration: 0.85, delay, ease: [0.23, 1, 0.32, 1] }}
-        style={{ transformOrigin: 'center 90%', cursor: 'default' }}
+        style={{ transformOrigin: 'center 90%', cursor: 'default', flex: stretch ? 1 : undefined }}
       >
-        <img src={src} alt={title} style={{ width: '100%', aspectRatio: '17/10', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
+        <img src={src} alt={title} style={{ width: '100%', aspectRatio: stretch ? undefined : '17/10', height: stretch ? '100%' : undefined, objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
       </PolaroidFrame>
       <div style={{ marginTop: '8px', padding: '0 4px' }}>
         <h3 style={{ fontFamily: 'var(--font-body)', fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: '5px', lineHeight: 1.3 }}>
@@ -118,13 +118,14 @@ export default function SlideFeatures() {
             alignItems: 'start',
           }}>
             {PHOTOS.map((photo, i) => (
-              <div key={photo.area} style={{ gridArea: photo.area, paddingTop: photo.area === 'lib' ? '10px' : undefined }}>
+              <div key={photo.area} style={{ gridArea: photo.area, height: photo.area === 'lib' ? '100%' : undefined }}>
                 <Polaroid
                   src={photo.src}
                   title={t(FEATURES[photo.featureIdx].title)}
                   desc={t(FEATURES[photo.featureIdx].desc)}
                   rotate={photo.rotate}
                   delay={i * 0.09}
+                  stretch={photo.area === 'lib'}
                 />
               </div>
             ))}
