@@ -82,7 +82,7 @@ export default function Header() {
                 whileHover={{ color: navLinkHoverColor, y: 3 }}
                 transition={{ duration: 0.1 }}
                 style={{
-                  fontSize: '0.82rem',
+                  fontSize: '1rem',
                   fontWeight: 500,
                   color: navLinkColor,
                   padding: '8px 11px',

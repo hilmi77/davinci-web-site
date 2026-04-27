@@ -69,7 +69,7 @@ export default function SlideFeatures() {
       <div style={{
         position: 'absolute', inset: 0, zIndex: 10,
         overflowY: isTablet ? 'auto' : 'hidden',
-        padding: isTablet ? 'clamp(64px, 10vw, 100px) 24px' : '80px 24px 40px',
+        padding: isMobile ? 'clamp(96px, 18vw, 140px) 24px 40px' : isTablet ? 'clamp(64px, 10vw, 100px) 24px' : '80px 24px 40px',
         display: 'flex', flexDirection: 'column', justifyContent: isTablet ? 'flex-start' : 'center',
       }}>
         <div className="section-edge section-edge--top" style={{ background: 'linear-gradient(90deg, transparent, rgba(31,41,55,0.18), transparent)' }} />
