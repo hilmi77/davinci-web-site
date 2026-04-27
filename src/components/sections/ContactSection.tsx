@@ -70,10 +70,10 @@ export default function ContactSection() {
       handle: t("Join the Group"),
     },
     {
-      href: "https://www.youtube.com/channel/UCwk9bgTaFXgwmlFrBGskj-A",
+      href: "https://www.youtube.com/@davinciboardgamecafe",
       icon: <YouTubeIcon />,
       label: "YouTube",
-      handle: "youtube.com/@davinci",
+      handle: "@davinciboardgamecafe",
     },
   ];
 
