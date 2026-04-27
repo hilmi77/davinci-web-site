@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useIsMobile } from '../../../hooks/useIsMobile'
 import PolaroidFrame from '../../ui/PolaroidFrame'
@@ -11,9 +10,6 @@ const PHOTOS = [
   { src: '/features/Screenshot%202026-04-22%20at%2010.42.09.png', featureIdx: 4, rotate: -2.8, area: 'event' },
 ]
 
-const IMG_HEIGHTS_DESKTOP: Record<string, number> = {
-  lib: 380, game: 155, salon: 155, menu: 145, event: 155,
-}
 
 const FEATURES = [
   { title: 'Extensive Game Library', desc: 'With over 500 board games, we offer options for every taste — from strategy to cooperative, family games to party games.' },
@@ -23,8 +19,8 @@ const FEATURES = [
   { title: 'Events and Tournaments', desc: 'Become part of our gaming community with regularly organized tournaments and special events.' },
 ]
 
-function Polaroid({ src, title, desc, rotate, delay, imgHeight }: {
-  src: string; title: string; desc: string; rotate: number; delay: number; imgHeight: number
+function Polaroid({ src, title, desc, rotate, delay }: {
+  src: string; title: string; desc: string; rotate: number; delay: number
 }) {
   return (
     <div style={{ position: 'relative' }}>
@@ -35,7 +31,7 @@ function Polaroid({ src, title, desc, rotate, delay, imgHeight }: {
         transition={{ duration: 0.85, delay, ease: [0.23, 1, 0.32, 1] }}
         style={{ transformOrigin: 'center 90%', cursor: 'default' }}
       >
-        <img src={src} alt={title} style={{ width: '100%', height: imgHeight, objectFit: 'cover', display: 'block' }} />
+        <img src={src} alt={title} style={{ width: '100%', aspectRatio: '17/10', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
       </PolaroidFrame>
       <div style={{ marginTop: '8px', padding: '0 4px' }}>
         <h3 style={{ fontFamily: 'var(--font-body)', fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: '5px', lineHeight: 1.3 }}>
@@ -73,29 +69,13 @@ export default function SlideFeatures() {
       <div style={{
         position: 'absolute', inset: 0, zIndex: 10,
         overflowY: isTablet ? 'auto' : 'hidden',
-        padding: isTablet ? 'clamp(64px, 10vw, 100px) 24px' : '40px 24px',
+        padding: isTablet ? 'clamp(64px, 10vw, 100px) 24px' : '80px 24px 40px',
         display: 'flex', flexDirection: 'column', justifyContent: isTablet ? 'flex-start' : 'center',
       }}>
         <div className="section-edge section-edge--top" style={{ background: 'linear-gradient(90deg, transparent, rgba(31,41,55,0.18), transparent)' }} />
         <div className="section-edge section-edge--bottom" style={{ background: 'linear-gradient(90deg, transparent, rgba(31,41,55,0.18), transparent)' }} />
 
         <div className="container-lg" style={{ position: 'relative', zIndex: 1 }}>
-        <motion.div
-          style={{ textAlign: 'center', marginBottom: isTablet ? 'clamp(36px, 6vw, 72px)' : '24px' }}
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-        >
-          
-          <h2 style={{
-            fontFamily: 'var(--font-body)', fontSize: 'clamp(1.5rem, 3vw, 2.4rem)',
-            fontWeight: 700, color: '#fff', lineHeight: 1.15,
-          }}>
-            {t('Experience')}{' '}
-            {t('The Difference')}
-          </h2>
-        </motion.div>
-
         {isMobile && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
             {PHOTOS.map((photo, i) => (
@@ -106,7 +86,6 @@ export default function SlideFeatures() {
                 desc={t(FEATURES[photo.featureIdx].desc)}
                 rotate={photo.rotate * 0.5}
                 delay={i * 0.07}
-                imgHeight={200}
               />
             ))}
           </div>
@@ -122,7 +101,6 @@ export default function SlideFeatures() {
                 desc={t(FEATURES[photo.featureIdx].desc)}
                 rotate={photo.rotate}
                 delay={i * 0.08}
-                imgHeight={220}
               />
             ))}
           </div>
@@ -147,7 +125,6 @@ export default function SlideFeatures() {
                   desc={t(FEATURES[photo.featureIdx].desc)}
                   rotate={photo.rotate}
                   delay={i * 0.09}
-                  imgHeight={IMG_HEIGHTS_DESKTOP[photo.area]}
                 />
               </div>
             ))}
