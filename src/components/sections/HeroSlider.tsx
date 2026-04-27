@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, Pagination, Navigation, EffectFade } from 'swiper/modules'
+import { Pagination, Navigation, EffectFade } from 'swiper/modules'
 import { motion } from 'framer-motion'
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -22,9 +22,8 @@ export default function HeroSlider() {
   return (
     <section id="home" className="section-base" style={{ height: '100vh', minHeight: '600px' }}>
       <Swiper
-        modules={[Autoplay, Pagination, Navigation, EffectFade]}
+        modules={[Pagination, Navigation, EffectFade]}
         effect="fade"
-        autoplay={{ delay: 15000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         navigation
         loop
