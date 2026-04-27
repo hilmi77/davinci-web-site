@@ -56,7 +56,7 @@ export default function Header() {
           gap: '16px',
         }}>
           {/* Logo */}
-          <a href="#home" style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
+          <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
             <motion.img
               whileHover={{ scale: 1.05 }}
               src="/images/davinci-logo.png"
