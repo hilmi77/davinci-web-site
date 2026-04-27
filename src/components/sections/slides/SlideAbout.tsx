@@ -52,16 +52,31 @@ export default function SlideAbout() {
                   <div style={{ position: 'absolute', bottom: '-30px', right: '-30px', width: '140px', height: '140px', background: 'radial-gradient(circle, rgba(255,209,102,0.12) 0%, transparent 70%)', borderRadius: '50%', zIndex: 0 }} />
                 </>
               )}
-              <img
-                src="/images/kutu-oyunlari-02.jpg"
-                alt="Da Vinci Board Game Cafe"
-                style={{
-                  width: '100%',
-                  height: isMobile ? '200px' : 'clamp(300px, 40vw, 460px)',
-                  objectFit: 'cover', borderRadius: 'var(--radius-lg)',
-                  boxShadow: 'var(--shadow-lg)', position: 'relative', zIndex: 1,
-                }}
-              />
+              
+              <div style={{
+                position: 'relative',
+                padding: '10px 10px 8px',
+                background: '#FFFEFB',
+                boxShadow: '0 8px 32px rgba(31,41,55,0.16), 0 2px 6px rgba(31,41,55,0.08)',
+                transform: isMobile ? 'none' : 'rotate(-2deg)',
+                zIndex: 1,
+              }}>
+                <div style={{
+                  position: 'absolute', top: '-9px', left: '50%', transform: 'translateX(-50%)',
+                  width: '13px', height: '13px', borderRadius: '50%', background: 'var(--red)',
+                  boxShadow: '0 2px 6px rgba(168,0,0,0.45)', zIndex: 2,
+                }} />
+                <img
+                  src="/images/kutu-oyunlari-02.jpg"
+                  alt="Da Vinci Board Game Cafe"
+                  style={{
+                    width: '100%',
+                    height: isMobile ? '200px' : 'clamp(300px, 40vw, 460px)',
+                    objectFit: 'cover',
+                    display: 'block',
+                  }}
+                />
+              </div>
             </div>
           </motion.div>
 

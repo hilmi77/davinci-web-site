@@ -112,15 +112,19 @@ export default function SlideHero({ monthlyImageUrl, onMonthlyImageClick }: Slid
       transition={{ duration: 0.7, delay: 0.6 }}
       className="hero-monthly-frame"
       style={{
-        flexShrink: 0, position: 'relative', padding: '8px', borderRadius: '24px',
-        background: 'linear-gradient(145deg, #A80000, #540000, rgba(168,0,0,0.4))',
-        boxShadow: '0 0 0 1px rgba(168,0,0,0.5), 0 32px 80px rgba(0,0,0,0.6), 0 0 40px rgba(168,0,0,0.25)',
+        flexShrink: 0, position: 'relative', padding: '10px 10px 8px',
+        background: '#FFFEFB',
+        boxShadow: '0 8px 32px rgba(31,41,55,0.16), 0 2px 6px rgba(31,41,55,0.08)',
         ...(isMobile ? { width: '100%' } : {}),
       }}
     >
-      <div style={{ position: 'absolute', top: '10px', left: '50%', transform: 'translateX(-50%)', width: '16px', height: '16px', borderRadius: '50%', background: 'var(--red)', boxShadow: '0 2px 8px rgba(168,0,0,0.6)', zIndex: 2 }} />
+      <div style={{
+        position: 'absolute', top: '-9px', left: '50%', transform: 'translateX(-50%)',
+        width: '13px', height: '13px', borderRadius: '50%', background: 'var(--red)',
+        boxShadow: '0 2px 6px rgba(168,0,0,0.45)', zIndex: 2,
+      }} />
       <div
-        style={{ borderRadius: '18px', overflow: 'hidden', background: '#000', cursor: 'pointer' }}
+        style={{ overflow: 'hidden', background: '#000', cursor: 'pointer' }}
         onClick={onMonthlyImageClick}
       >
         <img
