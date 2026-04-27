@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useIsMobile } from '../../../hooks/useIsMobile'
+import PolaroidFrame from '../../ui/PolaroidFrame'
 
 const STATS = [
   { value: '500+', label: 'Different Games' },
@@ -53,19 +54,13 @@ export default function SlideAbout() {
                 </>
               )}
               
-              <div style={{
-                position: 'relative',
-                padding: '10px 10px 8px',
-                background: '#FFFEFB',
-                boxShadow: '0 8px 32px rgba(31,41,55,0.16), 0 2px 6px rgba(31,41,55,0.08)',
-                transform: isMobile ? 'none' : 'rotate(-2deg)',
-                zIndex: 1,
-              }}>
-                <div style={{
-                  position: 'absolute', top: '-9px', left: '50%', transform: 'translateX(-50%)',
-                  width: '13px', height: '13px', borderRadius: '50%', background: 'var(--red)',
-                  boxShadow: '0 2px 6px rgba(168,0,0,0.45)', zIndex: 2,
-                }} />
+              <PolaroidFrame 
+                rotate={isMobile ? 0 : -2} 
+                style={{ zIndex: 1 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
                 <img
                   src="/images/kutu-oyunlari-02.jpg"
                   alt="Da Vinci Board Game Cafe"
@@ -76,7 +71,7 @@ export default function SlideAbout() {
                     display: 'block',
                   }}
                 />
-              </div>
+              </PolaroidFrame>
             </div>
           </motion.div>
 

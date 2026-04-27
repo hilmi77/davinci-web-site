@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useIsMobile } from '../../../hooks/useIsMobile'
+import PolaroidFrame from '../../ui/PolaroidFrame'
 
 const HERO_ROWS = (() => {
   let idx = 0
@@ -106,23 +107,16 @@ export default function SlideHero({ monthlyImageUrl, onMonthlyImageClick }: Slid
   )
 
   const monthlyFrame = monthlyImageUrl ? (
-    <motion.div
+    <PolaroidFrame
       initial={{ opacity: 0, x: isMobile ? 0 : 40, rotate: isMobile ? 0 : 3 }}
       animate={{ opacity: 1, x: 0, rotate: isMobile ? 0 : 3 }}
       transition={{ duration: 0.7, delay: 0.6 }}
       className="hero-monthly-frame"
       style={{
-        flexShrink: 0, position: 'relative', padding: '10px 10px 8px',
-        background: '#FFFEFB',
-        boxShadow: '0 8px 32px rgba(31,41,55,0.16), 0 2px 6px rgba(31,41,55,0.08)',
+        flexShrink: 0,
         ...(isMobile ? { width: '100%' } : {}),
       }}
     >
-      <div style={{
-        position: 'absolute', top: '-9px', left: '50%', transform: 'translateX(-50%)',
-        width: '13px', height: '13px', borderRadius: '50%', background: 'var(--red)',
-        boxShadow: '0 2px 6px rgba(168,0,0,0.45)', zIndex: 2,
-      }} />
       <div
         style={{ overflow: 'hidden', background: '#000', cursor: 'pointer' }}
         onClick={onMonthlyImageClick}
@@ -133,7 +127,7 @@ export default function SlideHero({ monthlyImageUrl, onMonthlyImageClick }: Slid
           style={{ width: isMobile ? '100%' : '520px', maxHeight: isMobile ? undefined : '600px', objectFit: 'contain', display: 'block' }}
         />
       </div>
-    </motion.div>
+    </PolaroidFrame>
   ) : null
 
   return (

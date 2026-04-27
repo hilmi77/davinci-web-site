@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useIsMobile } from '../../../hooks/useIsMobile'
+import PolaroidFrame from '../../ui/PolaroidFrame'
 
 const PHOTOS = [
   { src: '/features/Screenshot%202026-04-22%20at%2010.45.33.png', featureIdx: 0, rotate: -2.5, area: 'lib' },
@@ -26,24 +27,16 @@ function Polaroid({ src, title, desc, rotate, delay, imgHeight }: {
   src: string; title: string; desc: string; rotate: number; delay: number; imgHeight: number
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 48, rotate: rotate * 2 }}
-      animate={{ opacity: 1, y: 0, rotate }}
-      transition={{ duration: 0.85, delay, ease: [0.23, 1, 0.32, 1] }}
-      style={{ position: 'relative', transformOrigin: 'center 90%', cursor: 'default' }}
-    >
-      <div style={{
-        position: 'absolute', top: '-9px', left: '50%', transform: 'translateX(-50%)',
-        width: '13px', height: '13px', borderRadius: '50%', background: 'var(--red)',
-        boxShadow: '0 2px 6px rgba(168,0,0,0.45)', zIndex: 2,
-      }} />
-      <div style={{
-        background: '#FFFEFB', padding: '10px 10px 8px',
-        boxShadow: '0 8px 32px rgba(31,41,55,0.16), 0 2px 6px rgba(31,41,55,0.08)',
-        position: 'relative',
-      }}>
+    <div style={{ position: 'relative' }}>
+      <PolaroidFrame
+        rotate={rotate}
+        initial={{ opacity: 0, y: 48, rotate: rotate * 2 }}
+        animate={{ opacity: 1, y: 0, rotate }}
+        transition={{ duration: 0.85, delay, ease: [0.23, 1, 0.32, 1] }}
+        style={{ transformOrigin: 'center 90%', cursor: 'default' }}
+      >
         <img src={src} alt={title} style={{ width: '100%', height: imgHeight, objectFit: 'cover', display: 'block' }} />
-      </div>
+      </PolaroidFrame>
       <div style={{ marginTop: '8px', padding: '0 4px' }}>
         <h3 style={{ fontFamily: 'var(--font-body)', fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: '5px', lineHeight: 1.3 }}>
           {title}
@@ -52,7 +45,7 @@ function Polaroid({ src, title, desc, rotate, delay, imgHeight }: {
           {desc}
         </p>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
