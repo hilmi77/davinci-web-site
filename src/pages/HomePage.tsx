@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import HeroSlider from "../components/sections/HeroSlider";
+import InstagramPostsSection from "../components/sections/InstagramPostsSection";
 import ContactSection from "../components/sections/ContactSection";
 
 export default function HomePage() {
@@ -65,6 +66,7 @@ export default function HomePage() {
       </Helmet>
 
       <HeroSlider />
+      <InstagramPostsSection />
       <ContactSection />
     </>
   );

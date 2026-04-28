@@ -292,3 +292,197 @@ button {
   transform: translateY(-2px);
   box-shadow: 0 8px 28px rgba(168, 0, 0, 0.32);
 }
+
+/* ─── Instagram Feed ─────────────────────────────────────────── */
+.instagram-feed-section {
+  background: linear-gradient(180deg, #f6f1ea 0%, #f7f3ed 100%);
+  border-top: 1px solid rgba(31, 41, 55, 0.08);
+  border-bottom: 1px solid rgba(31, 41, 55, 0.08);
+}
+
+.instagram-feed-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.instagram-feed-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  line-height: 1.15;
+  color: var(--black-deep);
+}
+
+.instagram-feed-state {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(31, 41, 55, 0.08);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  color: var(--gray-700);
+  font-size: 0.95rem;
+}
+
+.instagram-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.instagram-skeleton-card {
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(31, 41, 55, 0.08);
+  background: #fff;
+  overflow: hidden;
+}
+
+.instagram-skeleton-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #e7eaef;
+}
+
+.instagram-skeleton-body {
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.instagram-skeleton-line {
+  height: 12px;
+  border-radius: 999px;
+  background: #e7eaef;
+}
+
+.instagram-skeleton-line-short {
+  width: 58%;
+}
+
+.instagram-shimmer {
+  background-image: linear-gradient(90deg, #e7eaef 20%, #f4f6f9 50%, #e7eaef 80%);
+  background-size: 220% 100%;
+  animation: instagram-shimmer 1.25s linear infinite;
+}
+
+.instagram-feed-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.instagram-feed-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: instagram-scroll 36s linear infinite;
+}
+
+.instagram-feed-marquee:hover .instagram-feed-track {
+  animation-play-state: paused;
+}
+
+.instagram-feed-card {
+  min-width: clamp(170px, 20vw, 220px);
+  width: clamp(170px, 20vw, 220px);
+  background: #fff;
+  border: 1px solid rgba(31, 41, 55, 0.08);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.instagram-feed-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.instagram-feed-media {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #e9edf3;
+}
+
+.instagram-feed-media-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.06);
+  transition: transform 0.35s ease;
+}
+
+.instagram-feed-card:hover .instagram-feed-media-image {
+  transform: scale(1.1);
+}
+
+.instagram-feed-card-body {
+  padding: 12px 12px 14px;
+}
+
+.instagram-feed-card-body p {
+  font-size: 0.87rem;
+  color: var(--gray-700);
+  line-height: 1.45;
+  min-height: 2.6em;
+}
+
+.instagram-feed-card-body small {
+  margin-top: 8px;
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+@media (max-width: 768px) {
+  .instagram-skeleton-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .instagram-feed-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .instagram-feed-track {
+    overflow-x: auto;
+    padding-bottom: 4px;
+    animation: none;
+    width: 100%;
+  }
+
+  .instagram-feed-marquee {
+    overflow-x: auto;
+    mask-image: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instagram-feed-track {
+    animation: none;
+  }
+
+  .instagram-shimmer {
+    animation: none;
+  }
+}
+
+@keyframes instagram-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 8px));
+  }
+}
+
+@keyframes instagram-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
