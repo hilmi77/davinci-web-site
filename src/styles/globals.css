@@ -330,6 +330,7 @@ button {
   background: linear-gradient(180deg, #f6f1ea 0%, #f7f3ed 100%);
   border-top: 1px solid rgba(31, 41, 55, 0.08);
   border-bottom: 1px solid rgba(31, 41, 55, 0.08);
+  padding: 40px 24px;
 }
 
 .instagram-feed-header {
@@ -341,7 +342,7 @@ button {
 }
 
 .instagram-feed-header h2 {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: clamp(1.5rem, 2.8vw, 2.2rem);
   line-height: 1.15;
   color: var(--black-deep);

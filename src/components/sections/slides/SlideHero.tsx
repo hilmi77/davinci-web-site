@@ -5,7 +5,7 @@ import PolaroidFrame from '../../ui/PolaroidFrame'
 
 const HERO_ROWS = (() => {
   let idx = 0
-  return ['DA VINCI', 'BOARD', 'GAME'].map(row => ({
+  return ['DA', 'VINCI', 'BOARD', 'GAME'].map(row => ({
     text: row,
     chars: row.split('').map((char, i) => ({
       char,
@@ -30,7 +30,7 @@ export default function SlideHero({ monthlyImageUrl, onMonthlyImageClick }: Slid
   const heading = (
     <div style={{
       fontFamily: HERO_ROW_FONT_FAMILY, fontSize: isMobile ? '3.6rem' : 'clamp(2.8rem, 6.5vw, 5.5rem)',
-      fontWeight: 900, fontStyle: HERO_ROW_FONT_STYLE, lineHeight: 1.05, color: '#fff', letterSpacing: '-0.02em',
+      fontWeight: 900, fontStyle: HERO_ROW_FONT_STYLE, lineHeight: 0.78, color: '#fff', letterSpacing: '-0.02em',
       marginBottom: isMobile ? '16px' : '24px',
     }}>
       {HERO_ROWS.map(({ text, chars }) => (
@@ -135,7 +135,7 @@ export default function SlideHero({ monthlyImageUrl, onMonthlyImageClick }: Slid
         <img
           src={monthlyImageUrl}
           alt="monthly activity"
-          style={{ width: isMobile ? '100%' : '520px', maxHeight: isMobile ? undefined : '600px', objectFit: 'contain', display: 'block' }}
+          style={{ width: isMobile ? '100%' : 'auto', height: 'auto', maxWidth: isMobile ? undefined : '520px', maxHeight: isMobile ? undefined : '600px', display: 'block' }}
         />
       </div>
     </PolaroidFrame>
