@@ -32,7 +32,33 @@ export default function InstagramPostsSection() {
     <section className="section-base section-pad instagram-feed-section">
       <div className="container-xl">
         <div className="instagram-feed-header">
-          <span className="section-badge section-badge--soft">Instagram</span>
+          <span
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '6px 12px',
+              borderRadius: '999px',
+              backgroundColor: '#fff',
+              border: '1px solid rgba(17, 24, 39, 0.12)',
+              color: '#374151',
+              fontSize: '0.78rem',
+              fontWeight: 700,
+              letterSpacing: '0.01em',
+            }}
+          >
+            <img
+              src="/images/instagram/instagram-logo.png"
+              alt="Instagram"
+              style={{
+                width: '16px',
+                height: '16px',
+                objectFit: 'contain',
+                display: 'block',
+              }}
+            />
+            @davinciboardgamecafe
+          </span>
           <h2>{t('Latest Posts')}</h2>
         </div>
 
