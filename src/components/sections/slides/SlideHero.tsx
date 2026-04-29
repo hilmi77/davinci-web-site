@@ -5,11 +5,18 @@ import PolaroidFrame from '../../ui/PolaroidFrame'
 
 const HERO_ROWS = (() => {
   let idx = 0
-  return ['DA', 'VINCI', 'BOARD', 'GAME'].map(row => ({
+  return ['DA VINCI', 'BOARD', 'GAME'].map(row => ({
     text: row,
-    chars: row.split('').map((char, i) => ({ char, key: `${row}-${i}`, delay: 0.3 + idx++ * 0.055 })),
+    chars: row.split('').map((char, i) => ({
+      char,
+      key: `${row}-${i}`,
+      isLast: i === row.length - 1,
+      delay: 0.3 + idx++ * 0.055,
+    })),
   }))
 })()
+const HERO_ROW_FONT_FAMILY = "'Inversionz', 'Inversionz Unboxed', var(--font-display)"
+const HERO_ROW_FONT_STYLE: 'normal' | 'italic' = 'normal'
 
 interface SlideHeroProps {
   monthlyImageUrl: string | null
@@ -22,21 +29,25 @@ export default function SlideHero({ monthlyImageUrl, onMonthlyImageClick }: Slid
 
   const heading = (
     <div style={{
-      fontFamily: 'var(--font-display)', fontSize: isMobile ? '3.6rem' : 'clamp(2.8rem, 6.5vw, 5.5rem)',
-      fontWeight: 900, lineHeight: 1.05, color: '#fff', letterSpacing: '-0.02em',
+      fontFamily: HERO_ROW_FONT_FAMILY, fontSize: isMobile ? '3.6rem' : 'clamp(2.8rem, 6.5vw, 5.5rem)',
+      fontWeight: 900, fontStyle: HERO_ROW_FONT_STYLE, lineHeight: 1.05, color: '#fff', letterSpacing: '-0.02em',
       marginBottom: isMobile ? '16px' : '24px',
     }}>
       {HERO_ROWS.map(({ text, chars }) => (
         <div key={text}>
-          {chars.map(({ char, key, delay }) => (
+          {chars.map(({ char, key, delay, isLast }) => (
             <motion.span
               key={key}
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay, ease: 'easeOut' }}
-              style={{ display: 'inline-block' }}
+              style={{
+                display: 'inline-block',
+                width: char === ' ' ? '0.42em' : undefined,
+                marginRight: isLast || char === ' ' ? '0' : '-0.14em',
+              }}
             >
-              {char}
+              {char === ' ' ? '\u00A0' : char}
             </motion.span>
           ))}
         </div>

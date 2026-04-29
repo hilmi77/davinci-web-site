@@ -1,3 +1,35 @@
+@font-face {
+  font-family: 'Inversionz';
+  src: url('/fonts/Inversionz.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inversionz';
+  src: url('/fonts/InversionzItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inversionz Unboxed';
+  src: url('/fonts/InversionzUnboxed.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inversionz Unboxed';
+  src: url('/fonts/InversionzUnboxedItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 /* ─── Design Tokens ─────────────────────────────────────────── */
 :root {
   /* Temel renkler */
