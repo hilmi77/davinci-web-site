@@ -135,7 +135,7 @@ export default function SlideHero({ monthlyImageUrl, onMonthlyImageClick }: Slid
         <img
           src={monthlyImageUrl}
           alt="monthly activity"
-          style={{ width: isMobile ? '100%' : 'auto', height: 'auto', maxWidth: isMobile ? undefined : '520px', maxHeight: isMobile ? undefined : '600px', display: 'block' }}
+          style={{ width: isMobile ? '100%' : 'auto', height: 'auto', maxWidth: isMobile ? undefined : '460px', maxHeight: isMobile ? undefined : '540px', display: 'block' }}
         />
       </div>
     </PolaroidFrame>
